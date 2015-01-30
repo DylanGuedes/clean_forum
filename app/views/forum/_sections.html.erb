@@ -1,14 +1,35 @@
 <div id="container">
+  <div class="grid-container outline">
+    <div class="row">
+      <div class="col-2">
+        <center><h4>Section</h4></center>
+      </div>
+      <div class="col-1">
+        <center><h4>Statistics</h4></center>
+      </div>
+      <div class="col-2">
+        <center><h4>Feed</h4></center>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="container">
   <% @sections.each do |section| %>
     <div class="section">
       <ul>
         <div class="grid-container outline">
           <div class="row">
-            <div class="col-4">
+            <div class="col-2">
               <h1><%= link_to "#{section.name}", '/sections/'+section.id.to_s %></h1>
               <h4><%= section.description %></h4>
             </div>
-            <div class="col-2">
+            <div class="col-1">
+              <h4>Topics: <%= section.topics.count %></h4>
+              <h4>Posts: <%= section.total_posts %>
+            </div>
+            <div class="col-1">
+              <h1><%= "Description" %></h1>
             </div>
           </div>
         </div>
