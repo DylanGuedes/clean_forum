@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   root 'forum#index'
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-
+  resources :posts
+  #posts controller
+  get '/sections/topics/:id/new' => 'posts#new'
+  get '/sections/topics/:id' => 'posts#show'
   #sessions controller
   get '/signin' => 'sessions#new'
   delete '/signout' => 'sessions#destroy'

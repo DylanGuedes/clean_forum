@@ -1,0 +1,12 @@
+<div id="container">
+  <div id="container">
+    <center><%= link_to "#{@post.topic.title}", "/sections/topics/"+@post.topic.id.to_s %></center>
+    <div class="signup">
+      <h1>New post</h1>
+      <%= form_for(@post) do |f| %>
+        <%= render 'fields', f: f %>
+        <%= f.submit "Done!", class: "button success round large", name: "topic_id", value: @post.topic.id %></center>
+      <% end %>
+    </div>
+  </div>
+</div>
