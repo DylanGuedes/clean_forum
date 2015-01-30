@@ -1,5 +1,10 @@
 <div id="container">
-  <% @sections.each do |section| %>
-    <%= section %>
-  <% end %>
+  <div class="section">
+    <ul>
+      <% @sections.each do |section| %>
+        <h1><%= section.name %></h1>
+        <h4><%= section.description %></h4>
+      <% end %>
+    </ul>
+  </div>
 </div>
