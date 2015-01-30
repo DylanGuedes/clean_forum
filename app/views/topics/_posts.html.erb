@@ -1,8 +1,18 @@
-<% @posts.each do |post| %>
-  <div class="section">
-    <ul>
-      <%= post.content %>
-    </ul>
+<div class="grid-container outline">
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col-1">
+            <div id="container">
+              <h4>User: <%= link_to "#{post.user.login}", post.user %></h4>
+            </div>
+      </div>
+      <div class="col-4">
+        <div id="container"><center><h5><%= post.created_at %></h5></center>
+            <h4><%= post.content %></h4>
+        </div>
+      </div>
+      <ul></ul>
+    <% end %>
   </div>
-  <ul></ul>
-<% end %>
+    <%= link_to 'New post', "#" %>
+</div>
