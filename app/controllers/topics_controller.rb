@@ -20,6 +20,7 @@ class TopicsController < ApplicationController
     if @topic.save && @post.save
       redirect_to @topic
     else
+      flash[:error] = "invalid topic. :("
       render 'new'
     end
   end

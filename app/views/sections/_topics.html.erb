@@ -1,12 +1,33 @@
+<div id="container">
+  <div class="row">
+    <div class="col-1">
+      <h4>Topic</h4>
+    </div>
+    <div class="col-1">
+      <h4>Author</h4>
+    </div>
+    <div class="col-1">
+      <h4>Post count</h4>
+    </div>
+    <div class="col-1">
+      <div class="right">
+        <h4>Last post</h4>
+      </div>
+    </div>
+  </div>
+</div>
 <% @topics.each do |topic| %>
 <div id="container">
   <div class="row">
-    <div class="col-2">
+    <div class="col-1">
       <h1><%= link_to "#{topic.title}", "/sections/topics/"+topic.id.to_s %></h1>
       <h5><%= topic.subtitle %></h5>
     </div>
     <div class="col-1">
-      <h1>Posts: <%= topic.posts.count %></h1>
+      <h1><%= topic.user.login %></h1>
+    </div>
+    <div class="col-1">
+      <center><h1><%= topic.posts.count %></h1></center>
     </div>
     <div class="col-1">
       <div class="right">

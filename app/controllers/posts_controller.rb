@@ -14,6 +14,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to @post
     else
+      flash[:notice] = "invalid post. :("
       render 'new'
     end
   end
