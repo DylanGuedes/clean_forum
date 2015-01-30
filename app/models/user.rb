@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   before_create :create_remember_token
 
   has_many :posts, dependent: :delete_all
+  has_many :topics, dependent: :delete_all
 
   validates :login, length: { maximum:50, minimum: 5 },
                           uniqueness: { case_sensitive: false }

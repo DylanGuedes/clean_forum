@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :posts
   #posts controller
   get '/sections/topics/:id/new' => 'posts#new'
-  get '/sections/topics/:id' => 'posts#show'
+  get '/sections/topics/posts/:id' => 'posts#show'
   #sessions controller
   get '/signin' => 'sessions#new'
   delete '/signout' => 'sessions#destroy'
