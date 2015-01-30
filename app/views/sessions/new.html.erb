@@ -1,0 +1,13 @@
+<div id="container">
+  <div id="container">
+    <div class="signup">
+      <h1>Sign In</h1>
+      <%= form_for(:session, url: sessions_path) do |f| %>
+        <%= render 'fields', f: f %>
+        <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+      <% end %>
+
+      <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   root 'forum#index'
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+
+  #sessions controller
+  get '/signin' => 'sessions#new'
+  get '/signout' => 'sessions#destroy'
 
   #forum controller
   get '/about' => 'forum#about'
