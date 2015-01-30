@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'forum#index'
+  resources :users
 
   #forum controller
   get '/about' => 'forum#about'

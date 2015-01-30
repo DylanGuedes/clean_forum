@@ -1,0 +1,11 @@
+<div id="container">
+  <div id="container">
+    <div class="signup">
+      <h1>Sign Up</h1>
+      <%= form_for(@user) do |f| %>
+        <%= render 'fields', f: f %>
+        <%= f.submit "Done!", class: "button success round large" %></center>
+      <% end %>
+    </div>
+  </div>
+</div>
