@@ -98,6 +98,12 @@ ul#chat li .created_at {
   padding-top: 2px;
 }
 
+.right {
+    position: absolute;
+    right: 500px;
+    width: 300px;
+}
+
 input#message_content {
   width: 240px;
 }
@@ -105,5 +111,44 @@ input#message_content {
 .section{
   border: solid 1px #777;
   background-color : white;
+  .description{
+  }
+}
+.grid-container{
+    width: 100%;
+    max-width: 1200px;
+}
 
+/*-- our cleafix hack -- */
+.row:before,
+.row:after {
+    content:"";
+    display: table ;
+    clear:both;
+}
+
+[class*='col-'] {
+    float: left;
+    min-height: 1px;
+    width: 16.66%;
+    /*-- our gutter -- */
+    padding: 12px;
+}
+
+.col-1{ width: 16.66%; }
+.col-2{ width: 33.33%; }
+.col-3{ width: 50%;    }
+.col-4{ width: 66.66%; }
+.col-5{ width: 83.33%; }
+.col-6{ width: 100%;   }
+
+.outline, .outline *{
+}
+
+
+/*-- some extra column content styling --*/
+[class*='col-'] > p {
+ padding: 0;
+ margin: 0;
+ text-align: center;
 }
