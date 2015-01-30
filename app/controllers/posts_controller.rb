@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
   def new
+    render_guard
     @topic = Topic.find(params[:id])
     print "#{@topic}*"*50
     @post = @topic.posts.build
   end
 
   def create
+    render_guard
     @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.build(post_params)
     @post.user = current_user

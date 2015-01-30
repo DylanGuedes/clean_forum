@@ -1,0 +1,13 @@
+<div id="container">
+  <div id="container">
+    <center><%= link_to "#{@section.name}", "/sections/"+@section.id.to_s %></center>
+    <div class="signup">
+      <h1>New Topic</h1>
+      <%= puts "#{@topic}"*20 %>
+      <%= form_for(@topic) do |f| %>
+        <%= render 'fields', f: f %>
+        <%= f.submit "Done!", class: "button success round large", name: "section_id", value: @section.id %></center>
+      <% end %>
+    </div>
+  </div>
+</div>

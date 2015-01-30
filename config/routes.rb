@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :posts
+  resources :topics
   #posts controller
   get '/sections/topics/:id/new' => 'posts#new'
   get '/sections/topics/posts/:id' => 'posts#show'
+
   #sessions controller
   get '/signin' => 'sessions#new'
   delete '/signout' => 'sessions#destroy'
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
   get '/sections/:id' => 'sections#show'
 
   #topics controller
+  get '/sections/:id/new' => 'topics#new'
   get '/sections/topics/:id' => 'topics#show'
 
   #users controller

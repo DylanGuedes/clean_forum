@@ -24,4 +24,10 @@ module SessionsHelper
     cookies.delete(:remember_token)
     self.current_user = nil
   end
+
+  def render_guard
+    if !signed_in?
+      redirect_to root_path
+    end
+  end
 end
