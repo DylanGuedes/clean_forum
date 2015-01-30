@@ -5,7 +5,7 @@
         <div class="grid-container outline">
           <div class="row">
             <div class="col-4">
-              <h1><%= section.name %></h1>
+              <h1><%= link_to "#{section.name}", '/sections/'+section.id.to_s %></h1>
               <h4><%= section.description %></h4>
             </div>
             <div class="col-2">
