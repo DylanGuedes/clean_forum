@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   #sections controller
   get '/sections/:id' => 'sections#show'
 
+  #topics controller
+  get '/sections/topics/:id' => 'topics#show'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
