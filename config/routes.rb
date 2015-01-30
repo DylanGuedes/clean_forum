@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   #sessions controller
   get '/signin' => 'sessions#new'
-  get '/signout' => 'sessions#destroy'
+  delete '/signout' => 'sessions#destroy'
 
   #forum controller
   get '/about' => 'forum#about'
