@@ -27,6 +27,7 @@ module SessionsHelper
 
   def render_guard
     if !signed_in?
+      flash[:alert] = "You need to signin. :("
       redirect_to root_path
     end
   end
