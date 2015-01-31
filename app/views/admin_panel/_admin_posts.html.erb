@@ -1,7 +1,36 @@
 <center><h1>Pending Posts</h1></center>
-<div id="container">
-  <% @posts.each do |post| %>
-    <h4>By: <%= link_to "#{post.user.login}", '/sections/topics/'+post.topic.id.to_s %></h4>
-    <h4>Description: <%= post.report_description %>
-  <% end %>
+<div class="section group">
+  <div class="col span_2_of_12">
+  </div>
+  <div class="col span_2_of_12">
+    <h3>Author:</h3>
+  </div>
+  <div class="col span_2_of_12">
+    <h3>Reported by:</h3>
+  </div>
+  <div class="col span_3_of_12">
+    <h3>Description</h3>
+  </div>
+  <div class="col span_2_of_12">
+    <h3>Turn invisible:</h3>
+  </div>
+  <div class="col span_1_of_12">
+
+  </div>
 </div>
+
+<% @posts.each do |post| %>
+  <div id="container">
+    <div class="section group">
+      <div class="col span_4_of_12">
+        <h4><%= link_to "#{post.user.login}", '/sections/topics/'+post.topic.id.to_s %></h4>
+      </div>
+      <div class="col span_6_of_12">
+        <p> <%= post.report_description %></p>
+      </div>
+      <div class="col span_2_of_12">
+        <h4><%= link_to " # #{post.id}", '#' %></h4>
+      </div>
+    </div>
+  </div>
+<% end %>
