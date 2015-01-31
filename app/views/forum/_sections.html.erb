@@ -25,13 +25,18 @@
               <h4><%= section.description %></h4>
             </div>
             <div class="col-1">
-              <h4>Topics: <%= section.topics.count %></h4>
-              <h4>Posts: <%= section.total_posts %>
+              <center>
+                <h4>Topics: <%= section.topics.count %></h4>
+                <h4>Posts: <%= section.total_posts %></h4>
+                </center>
+              </h4>
             </div>
             <div class="col-1">
               <% if section.last_post.class == Post %>
-                <h4><%= link_to "Last Post", "/sections/topics/"+section.last_post.topic.id.to_s %></h4>
-                <h1><%= section.last_post.created_at.strftime("%H:%M") %></h1>
+                <div class="right">
+                  <h4><%= link_to "Last Post", "/sections/topics/"+section.last_post.topic.id.to_s %></h4>
+                  <h1><%= section.last_post.created_at.strftime("%H:%M") %></h1>
+                </div>
               <% end %>
             </div>
           </div>

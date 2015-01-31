@@ -1,18 +1,26 @@
-<div class="grid-container outline">
-  <div class="row">
-    <% @posts.each do |post| %>
-      <div class="col-1">
-            <div id="container">
-              <h4>User: <%= link_to "#{post.user.login}", post.user %></h4>
-            </div>
+
+  <% @posts.each do |post| %>
+  <div class="section group">
+    <div class="col span_1_of_12">
+    </div>
+    <div class="col span_3_of_12">
+        <div id="container">
+          <h4>User: <%= link_to "#{post.user.login}", post.user %></h4><br>
+          <h4>Posts: <%= post.user.posts.count %></h4><br>
+        </div>
       </div>
-      <div class="col-4">
+      <div class="col span_8_of_12">
         <div id="container"><center><h5><%= post.created_at %></h5></center>
             <h4><%= post.content %></h4>
         </div>
+        <br><br>
       </div>
       <ul></ul>
+        </div>
+        <ul></ul>
+        <br><br>
+        <br><br>
     <% end %>
-  </div>
+
     <%= link_to 'New post', "/sections/topics/#{@topic.id}/new" %>
 </div>
