@@ -9,6 +9,9 @@
         <%= link_to 'Profile', current_user %>
         <%= link_to 'Settings', '#' %>
         <%= link_to 'Sign out', signout_path, method: "delete" %>
+        <% if current_user.admin %>
+          <%= link_to "Admin Panel", admin_path %>
+        <% end %>
       <% else %>
         <%= link_to 'Sign Up', signup_path %>
         <%= link_to 'Sign In', signin_path %>

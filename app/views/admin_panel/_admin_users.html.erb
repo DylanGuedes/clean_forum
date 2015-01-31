@@ -1,0 +1,10 @@
+<h2>
+  <center>Users</center>
+  <% @users.each do |user| %>
+    <div id="container">
+      <%= link_to "#{user.login}", user %>
+      <%= link_to "Deletar", { :controller => 'admin_panel', :action => 'destroy_user', :id => user.id } %>
+      <%= link_to "Tornar admin", '#' %>
+    </div>
+  <% end %>
+</h2>

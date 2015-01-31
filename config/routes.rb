@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   #adminpanel controller
   get '/admin' => 'admin_panel#index'
+  get '/admin_panel/destroy_user/:id' => 'admin_panel#destroy_user'
 
   #sessions controller
   get '/signin' => 'sessions#new'
