@@ -5,8 +5,11 @@
     </div>
     <div class="col span_3_of_12">
         <div id="container">
-          <h4>User: <%= link_to "#{post.user.login}", post.user %></h4><br>
-          <h4>Posts: <%= post.user.posts.count %></h4><br>
+          <center>
+            <h4>User: <%= link_to "#{post.user.login}", post.user %></h4><br>
+            <h4>Posts: <%= post.user.posts.count %></h4><br>
+            <h4>Warn Level: <%= post.user.warn %></h4>
+          <center>
         </div>
       </div>
       <div class="col span_8_of_12">
