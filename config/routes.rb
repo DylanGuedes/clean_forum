@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :posts
   resources :topics
+  resources :sections
   #posts controller
   get '/sections/topics/:id/new' => 'posts#new'
   get '/sections/topics/posts/:id' => 'posts#show'
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
 
   #sections controller
   get '/sections/:id' => 'sections#show'
+  get '/new_section' => 'sections#new'
 
   #topics controller
   get '/sections/:id/new' => 'topics#new'

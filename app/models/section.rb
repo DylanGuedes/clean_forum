@@ -1,4 +1,6 @@
 class Section < ActiveRecord::Base
+  validates :name, :presence => true
+  validates :description, :presence => true
   def total_posts
     a = self.topics
     c = 0

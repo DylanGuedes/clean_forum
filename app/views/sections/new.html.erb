@@ -1,0 +1,14 @@
+<div id="container">
+  <div id="container">
+    <div class="signup">
+      <h1>New section</h1>
+      <%= form_for(@section) do |f| %>
+        <%= f.label :name, "Name" %><br>
+        <%= f.text_field :name %><br><br>
+        <%= f.label :description, "Description" %><br>
+        <%= f.text_area :description %><br>
+        <%= f.submit "Done!" %></center>
+      <% end %>
+    </div>
+  </div>
+</div>
