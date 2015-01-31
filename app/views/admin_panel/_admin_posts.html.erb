@@ -1,1 +1,7 @@
-dass
+<center><h1>Pending Posts</h1></center>
+<div id="container">
+  <% @posts.each do |post| %>
+    <h4>By: <%= link_to "#{post.user.login}", '/sections/topics/'+post.topic.id.to_s %></h4>
+    <h4>Description: <%= post.report_description %>
+  <% end %>
+</div>

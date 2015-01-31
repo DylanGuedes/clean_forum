@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130232824) do
+ActiveRecord::Schema.define(version: 20150131124848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,8 +20,11 @@ ActiveRecord::Schema.define(version: 20150130232824) do
     t.integer  "topic_id"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.boolean  "pending",            default: false
+    t.boolean  "visible",            default: true
+    t.text     "report_description"
   end
 
   create_table "sections", force: :cascade do |t|
@@ -48,11 +51,12 @@ ActiveRecord::Schema.define(version: 20150130232824) do
     t.string   "login"
     t.string   "nickname"
     t.boolean  "admin"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "password_digest"
     t.string   "remember_digest"
     t.string   "remember_token"
+    t.float    "warn",            default: 0.0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
