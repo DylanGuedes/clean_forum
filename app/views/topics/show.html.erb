@@ -1,4 +1,4 @@
-<h2><%= link_to "#{@topic.section.name}", '/sections/'+@topic.section.id.to_s %>  /  <%= link_to "#{@topic.title}", '#' %></h2>
+<h2><%= link_to "Home", root_path %>  /  <%= link_to "#{@topic.section.name}", '/sections/'+@topic.section.id.to_s %>  /  <%= link_to "#{@topic.title}", '#' %></h2>
 <div id="container">
   <%= render '/topics/posts' %>
 </div>
