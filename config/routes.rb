@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get '/sections/topics/:id/new' => 'posts#new'
   get '/sections/topics/posts/:id' => 'posts#show'
 
+  #adminpanel controller
+  get '/admin' => 'admin_panel#index'
+
   #sessions controller
   get '/signin' => 'sessions#new'
   delete '/signout' => 'sessions#destroy'
