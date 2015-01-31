@@ -1,3 +1,4 @@
+<div class="index">
 <div class="section group">
   <div class="col span_2_of_12">
   </div>
@@ -28,14 +29,15 @@
         </center>
       </div>
       <div class="col span_4_of_12">
+      </div>
         <% if section.last_post.class == Post %>
-          <div class="right">
-            <h4><%= link_to "Last Post", "/sections/topics/"+section.last_post.topic.id.to_s %>
+          <div id="lastpost">
+            <h4><%= link_to "Last Post", "/sections/topics/"+section.last_post.topic.id.to_s %></h4>
             <h1><%= section.last_post.created_at.strftime("%H:%M") %></h1>
           </div>
         <% end %>
-      </div>
     </div>
   </div>
   <%# need refactor %>
 <% end %>
+</div>
