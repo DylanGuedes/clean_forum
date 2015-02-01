@@ -5,9 +5,15 @@ Rails.application.routes.draw do
   resources :posts
   resources :topics
   resources :sections
+  resources :reports
+
+  get '/report_topics/' => 'posts#new'
   #posts controller
   get '/sections/topics/:id/new' => 'posts#new'
   get '/sections/topics/posts/:id' => 'posts#show'
+  get '/report_topic/:id' => 'topics#render_report'
+  get '/report_topics/:id' => 'topics#render_report'
+  post '/report_topics' => 'topics#create_report'
 
   #adminpanel controller
   get '/admin' => 'admin_panel#index'
