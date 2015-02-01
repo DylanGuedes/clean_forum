@@ -14,12 +14,13 @@ class TopicsController < ApplicationController
   def render_report
     render_guard
     @topic = Topic.find(params[:id])
-    @report = ReportTopic.new
+    @report = @topic.report_topics.build
   end
 
   def create_report
     render_guard
-    @report = Report.new(report_params)
+    @report = ReportTopic.new(report_params)
+    @report.topic = Topic.find(params[:topic_id])
     @report.user = current_user
     if @report.save
       flash[:notice] = "Report created!"
@@ -51,6 +52,6 @@ class TopicsController < ApplicationController
   end
 
   def report_params
-    params.require(:report_topic).permit(:description, :user, :topic)
+    params.require(:report_topic).permit(:description, :user, :topic, :type, :topic_id)
   end
 end

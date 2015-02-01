@@ -6,7 +6,7 @@ class AdminPanelController < ApplicationController
       @users = User.where(:admin => nil)
       @users += User.where(:admin => false)
       @section = Section.all
-
+      @reports = Report.all
     else
       flash[:notice] = "You are not an admin! :("
       redirect_to root_path
