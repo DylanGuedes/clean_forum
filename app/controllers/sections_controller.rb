@@ -1,7 +1,7 @@
 class SectionsController < ApplicationController
   def show
     @section = Section.find(params[:id])
-    @topics = @section.topics
+    @topics = @section.topics.where(:visible => true)
   end
 
   def new
