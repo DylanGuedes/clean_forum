@@ -34,6 +34,9 @@ Rails.application.routes.draw do
   #topics controller
   get '/sections/:id/new' => 'topics#new'
   get '/sections/topics/:id' => 'topics#show'
+  get '/report_posts/:id' => 'posts#render_report'
+  get '/report_posts/' => 'posts#render_report'
+  post '/report_posts' => 'posts#create_report'
 
   #users controller
   get '/signup' => 'users#new'
