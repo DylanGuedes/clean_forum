@@ -44,9 +44,9 @@
       <div class="col span_2_of_12">
         <h4><%= link_to 'Discard', { :controller => 'admin_panel', :action => 'disapprove_report', :report_id => a.id } %></h4>
         <% if a.kind_of? ReportTopic %>
-          <h4><%= link_to "Disapprove Topic", '#' %> </h4>
+          <h4><%= link_to "Disapprove Topic", { :controller => 'admin_panel', :action => 'approve_report', :report_id => a.id } %> </h4>
         <% else %>
-          <h4><%= link_to "Disapprove Post", '#' %></h4>
+          <h4><%= link_to "Disapprove Post", { :controller => 'admin_panel', :action => 'approve_report', :report_id => a.id } %> </h4>
         <% end -%>
       </div> 
     </div>

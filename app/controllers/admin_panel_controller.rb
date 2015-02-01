@@ -21,6 +21,23 @@ class AdminPanelController < ApplicationController
     redirect_to root_path
   end
 
+  def approve_report
+    @report = Report.find(params[:report_id])
+    @report.pending = false
+    if @report.kind_of? ReportTopic
+      @report.topic.visible = false
+      @report.topic.save
+      flash[:success] = "Topic ##{@report.topic.id} is invisible now!"
+    else
+      @report.post.visible = false
+      @report.post.save
+      flash[:sucess] = "Post ##{@report.post.id} is invisible now!"
+    end
+    @report.accepted = true
+    @report.save
+    redirect_to root_path
+  end
+
   def destroy_user
     if current_user && !current_user.admin.nil? && current_user.admin
       @user = User.find(params[:id])

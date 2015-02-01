@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get '/admin' => 'admin_panel#index'
   get '/admin_panel/destroy_user/:id' => 'admin_panel#destroy_user'
   get '/admin_panel/disapprove_report/:report_id' => 'admin_panel#disapprove_report'
+  get '/admin_panel/approve_report/:report_id' => 'admin_panel#approve_report'
+  
   #sessions controller
   get '/signin' => 'sessions#new'
   delete '/signout' => 'sessions#destroy'
