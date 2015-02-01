@@ -1,0 +1,12 @@
+<center>
+  <h1>
+    Reporting topic #<%= @topic.id %>, created by <%= @topic.user.login %>.
+    Reporter: <%= current_user.login %> 
+  </h1>
+
+  <%= form_for @report do |f| %>
+     <%= f.label :description, "Description" %><br>
+     <%= f.text_area :description %><br>
+     <%= f.submit "done", { :controller => 'topics', :action => 'create_report', name: "topic_id", value: @topic.id } %>
+   <% end %> 
+</center>

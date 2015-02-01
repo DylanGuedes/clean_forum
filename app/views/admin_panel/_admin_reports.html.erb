@@ -1,0 +1,54 @@
+<div class="section_above_container">
+  <div class="section group">
+    <div class="col span_2_of_12">
+      <h4>Author</h4>
+    </div>
+    <div class="col span_2_of_12">
+      <h4>Target</h4>
+    </div>
+    <div class="col span_4_of_12">
+      <h4>Little description</h4>
+    </div>
+    <div class="col span_2_of_12">
+      <h4>Status</h4>
+    </div>
+    <div class="col span_2_of_12">
+      <h4>Action</h4>
+    </div>
+  </div>
+</div>
+
+<% @reports.each do |a| %>
+  <div id="container">
+    <div class="section group">
+      <div class="col span_2_of_12">
+        <h4><%= link_to "#{a.user.login}", a.user %></h4>
+      </div>
+      <div class="col span_2_of_12">
+        <% if a.kind_of? ReportTopic  %>
+          <h4><%= link_to "#{a.topic.user.login}", a.topic.user %></h4>
+        <% else %>
+          <h4><%= link_to "#{a.post.user.login}", a.post.user %></h4>
+        <% end %>
+      </div>
+      <div class="col span_4_of_12">
+        <% if a.kind_of? ReportTopic  %>
+          <h4><%= link_to "#{a.description.first(500)}...", a.topic %></h4>
+        <% else %>
+          <h4><%= link_to "#{a.description.first(500)}...", a.post %></h4>          
+        <% end %>
+      </div>
+      <div class="col span_2_of_12">
+        <h4><%= "Pending" if a.pending %></h4>
+      </div>
+      <div class="col span_2_of_12">
+        <h4><%= link_to 'Discard', { :controller => 'admin_panel', :action => 'disapprove_report', :report_id => a.id } %></h4>
+        <% if a.kind_of? ReportTopic %>
+          <h4><%= link_to "Disapprove Topic", { :controller => 'admin_panel', :action => 'approve_report', :report_id => a.id } %> </h4>
+        <% else %>
+          <h4><%= link_to "Disapprove Post", { :controller => 'admin_panel', :action => 'approve_report', :report_id => a.id } %> </h4>
+        <% end -%>
+      </div> 
+    </div>
+  </div>
+<% end %>

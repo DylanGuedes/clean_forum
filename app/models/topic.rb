@@ -4,7 +4,7 @@ class Topic < ActiveRecord::Base
   belongs_to :user
   validates :content_for_posts, :presence => true
   validates :title, :presence => true
-
+  has_many :report_topics
 
   def has_posts?
     if !self.posts.nil?

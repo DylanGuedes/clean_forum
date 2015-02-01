@@ -11,6 +11,26 @@ class TopicsController < ApplicationController
     @topic = Topic.new
   end
 
+  def render_report
+    render_guard
+    @topic = Topic.find(params[:id])
+    @report = @topic.report_topics.build
+  end
+
+  def create_report
+    render_guard
+    @report = ReportTopic.new(report_params)
+    @report.topic = Topic.find(params[:topic_id])
+    @report.user = current_user
+    if @report.save
+      flash[:notice] = "Report created!"
+      redirect_to root_path
+    else
+      flash[:notice] = "Invalid report."
+      render 'create_report'
+    end
+  end
+
   def create
     render_guard
     @section = Section.find(params[:section_id])
@@ -29,5 +49,9 @@ class TopicsController < ApplicationController
   private
   def topic_params
     params.require(:topic).permit(:title, :subtitle, :section, :content_for_posts)
+  end
+
+  def report_params
+    params.require(:report_topic).permit(:description, :user, :topic, :type, :topic_id)
   end
 end

@@ -1,7 +1,71 @@
 {
   "RSpec": {
     "coverage": {
+      "/home/dguedes/Desktop/forum/clean_forum/app/helpers/admin_panel_helper.rb": [
+        1,
+        null
+      ],
+      "/home/dguedes/Desktop/forum/clean_forum/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/home/dguedes/Desktop/forum/clean_forum/app/helpers/forum_helper.rb": [
+        1,
+        null
+      ],
+      "/home/dguedes/Desktop/forum/clean_forum/app/helpers/posts_helper.rb": [
+        1,
+        null
+      ],
+      "/home/dguedes/Desktop/forum/clean_forum/app/helpers/sections_helper.rb": [
+        1,
+        null
+      ],
+      "/home/dguedes/Desktop/forum/clean_forum/app/helpers/sessions_helper.rb": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/home/dguedes/Desktop/forum/clean_forum/app/helpers/topics_helper.rb": [
+        1,
+        null
+      ],
+      "/home/dguedes/Desktop/forum/clean_forum/app/helpers/users_helper.rb": [
+        1,
+        null
+      ]
     },
-    "timestamp": 1422630690
+    "timestamp": 1422819496
   }
 }
