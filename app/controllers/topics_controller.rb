@@ -1,4 +1,5 @@
 class TopicsController < ApplicationController
+  include ReportsHelper
   def show
     @topic = Topic.find(params[:id])
     @posts = @topic.posts
@@ -18,17 +19,7 @@ class TopicsController < ApplicationController
   end
 
   def create_report
-    render_guard
-    @report = ReportTopic.new(report_params)
-    @report.topic = Topic.find(params[:topic_id])
-    @report.user = current_user
-    if @report.save
-      flash[:notice] = "Report created!"
-      redirect_to root_path
-    else
-      flash[:notice] = "Invalid report."
-      render 'create_report'
-    end
+    shared_report "ReportTopic"
   end
 
   def create
