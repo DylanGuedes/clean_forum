@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
   include ReportsHelper
+
   def show
     @topic = Topic.find(params[:id])
     @posts = @topic.posts
