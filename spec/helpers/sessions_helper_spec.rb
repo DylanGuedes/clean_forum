@@ -10,6 +10,22 @@ require 'rails_helper'
 #     end
 #   end
 # end
+include SessionsHelper
+
 RSpec.describe SessionsHelper, :type => :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    @user = FactoryGirl.create(:user)
+    sign_in @user
+  end
+
+  # it "should return signed_in? true for a logged user" do  -> This test can't work because the session
+  #   current_user = @user                                         object can't be find
+  #   expect(@user.signed_in?).to eq(true)
+  # end
+
+  # it "should redirect_to root_path if the user isn't signed_in" do        -> Method redirect_to can't work in a non-controller class
+  #   sign_out
+  #   render_guard
+  # end
+
 end

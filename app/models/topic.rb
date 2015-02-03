@@ -5,12 +5,4 @@ class Topic < ActiveRecord::Base
   validates :content_for_posts, :presence => true
   validates :title, :presence => true
   has_many :report_topics
-
-  def has_posts?
-    if !self.posts.nil?
-      true
-    else
-      false
-    end
-  end
 end
