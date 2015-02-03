@@ -1,24 +1,23 @@
 class Section < ActiveRecord::Base
   validates :name, :presence => true
   validates :description, :presence => true
+
   def total_posts
-    a = self.topics
-    c = 0
-    a.each do |b|
-      c += b.posts.count
+    total = 0
+    self.topics.each do |post_count|
+      total += post_count.posts.count
     end
-    return c
+    return total
   end
 
   def last_post
-    all_topics = self.topics
-    if all_topics.empty?
+    if self.topics.empty?
       return "Empty Section. :("
     else
-      latest = all_topics.last.posts.last
-      all_topics.each do |topic|
-        if topic.created_at > latest.created_at
-          latest = topic
+      latest = self.topics.last.posts.last
+      self.topics.each do |topic|
+        if topic.posts.last.created_at > latest.created_at
+          latest = topic.posts.last
         end
       end
       return latest

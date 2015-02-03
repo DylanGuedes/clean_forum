@@ -21,4 +21,10 @@ FactoryGirl.define do
     subtitle              "random subtitle"
     content_for_posts     "random content for posts"
   end
+
+  factory :report_topic do
+    description           "a description"
+    type                  "ReportTopic"
+
+  end
 end

@@ -58,11 +58,20 @@ RSpec.describe TopicsController, :type => :controller do
         end
       end
       # context "with invalid params" do
-      #   subject { post :create, topic: invalid_attributes, :section_id => @section.id } -> not passing tt
+      #   subject { post :create, topic: invalid_attributes, :section_id => @section.id }
       #   it 'should re-render #new' do
       #     expect(subject).to have_http_status(:redirect)
       #   end
       # end
     end
+    # describe '#create_report' do
+    #   it "should work" do
+    #     @topic = FactoryGirl.create(:topic)
+    #     @report = FactoryGirl.create(:report_topic)
+    #     sign_in @user
+    #     get :create_report, :report_topic => @report, :topic_id => @topic.id  -> not passing tt
+    #     expect(response).to have_http_status(:success)
+    #   end
+    # end
   end
 end
