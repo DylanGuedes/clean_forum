@@ -36,8 +36,6 @@ RSpec.describe UsersController, :type => :controller do
         post :create, :user => { :login => @user.login, :password => 'anewuserpassword', :password_confirmation => 'anewuserpassword' }
         expect(response).to render_template(:new)
       end
-
     end
-
   end
 end
