@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :login_filter, only: [:new, :render_report, :create, :create_report]
+  
   include ReportsHelper
 
   def new
