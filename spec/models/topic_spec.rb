@@ -9,7 +9,8 @@ RSpec.describe Topic, :type => :model do
 
   it { 
     #insert new attributes here
-    expect(@topic).to respond_to(:content, :user_id, :section_id, :report_topics, :visible, :title, :subtitle)
+    expect(@topic).to respond_to(:content, :user_id, :section_id, :report_topics, :visible, :title, :subtitle,
+      :pinned)
    }
 
   it { expect(@topic).to be_valid }
@@ -86,6 +87,10 @@ RSpec.describe Topic, :type => :model do
         end
       end
     end
+    describe 'pinned' do
+      it 'must have default value false' do
+        expect(@topic.pinned).to eq(false)
+      end
+    end
   end
-
 end
