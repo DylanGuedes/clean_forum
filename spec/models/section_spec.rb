@@ -57,7 +57,12 @@ RSpec.describe Section, :type => :model do
         end
       end
     end
-
+    describe 'user_id' do
+      before { @section.user_id = '' }
+      it 'must not allow an invalid/blank user_id' do
+        expect(@section).not_to be_valid
+      end
+    end
   end
 
   describe '#total_posts' do
