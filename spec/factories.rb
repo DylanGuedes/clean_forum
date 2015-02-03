@@ -11,4 +11,14 @@ FactoryGirl.define do
     name                  "an idiot section"
     description           "a stupid description"
   end
+
+  factory :post do
+    content               "random content"
+  end
+
+  factory :topic do
+    title                 "random title"
+    subtitle              "random subtitle"
+    content_for_posts     "random content for posts"
+  end
 end
