@@ -1,5 +1,7 @@
 class TopicsController < ApplicationController
   include ReportsHelper
+  include SessionsHelper
+
 
   def show
     @topic = Topic.find(params[:id])

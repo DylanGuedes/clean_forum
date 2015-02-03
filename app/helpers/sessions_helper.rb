@@ -25,10 +25,25 @@ module SessionsHelper
     self.current_user = nil
   end
 
+  def current_user? user
+    user == current_user
+  end
+
   def render_guard
     if !signed_in?
       flash[:alert] = "You need to signin. :("
       redirect_to root_path
     end
   end
+
+  def store_location
+    session[:forwarding_url] = request.url if request.get?
+  end
+
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+
+
 end
