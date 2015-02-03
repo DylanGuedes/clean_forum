@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   validates :login, length: { maximum:50, minimum: 5 },
                           uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }
+  validates :name, length: { maximum: 50 }
   has_secure_password
 
   def User.new_remember_token
