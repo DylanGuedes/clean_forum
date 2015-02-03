@@ -14,7 +14,7 @@ RSpec.describe User, :type => :model do
      }
   it { expect(@user).to be_valid }
 
-  describe 'attributes' do
+  describe 'attribute' do
     describe 'login' do
       describe 'with less than 5 chars' do        
         before { @user.login = 'aaa' }
@@ -107,6 +107,11 @@ RSpec.describe User, :type => :model do
           expect(@valid_user).to be_valid
         end
       end
-    end  
+    end
+    describe 'admin' do
+      it 'must have default value false' do
+        expect(@user.admin).to eq(nil)
+      end
+    end
   end
 end
