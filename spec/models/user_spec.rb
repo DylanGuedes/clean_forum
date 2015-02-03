@@ -81,7 +81,32 @@ RSpec.describe User, :type => :model do
           end
         end
       end
-      
+    end
+    describe 'password and password_confirmation' do
+      describe 'with less than 5 chars' do
+        before { @user.password = 'aaa' ; @user.password_confirmation = 'aaa' }
+        it 'should not be valid' do
+          expect(@user).not_to be_valid
+        end
+      end
+      describe 'with more than 100 chars' do
+        before { @user.password = 'aaa'*100 ; @user.password_confirmation = 'aaa'*100 }
+        it 'should not be valid' do
+          expect(@user).not_to be_valid
+        end
+      end
+      describe 'not match with password_confirmation' do
+        before { @user.password = 'umpass' ; @user.password_confirmation = 'outropass' }
+        it 'should not be valid' do
+          expect(@user).not_to be_valid
+        end
+      end
+      describe 'already taken' do
+        before { @valid_user.password = @user.password ; @valid_user.password_confirmation = @user.password }
+        it 'should be valid' do
+          expect(@valid_user).to be_valid
+        end
+      end
     end  
   end
 end
