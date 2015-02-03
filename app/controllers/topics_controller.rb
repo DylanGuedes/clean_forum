@@ -1,5 +1,8 @@
 class TopicsController < ApplicationController
+  before_action :login_filter, only: [:create, :new, :render_report, :create_report]
+
   include ReportsHelper
+
   def show
     @topic = Topic.find(params[:id])
     @posts = @topic.posts
@@ -7,13 +10,11 @@ class TopicsController < ApplicationController
   end
 
   def new
-    render_guard
     @section = Section.find(params[:id])
     @topic = Topic.new
   end
 
   def render_report
-    render_guard
     @topic = Topic.find(params[:id])
     @report = @topic.report_topics.build
   end
@@ -23,13 +24,10 @@ class TopicsController < ApplicationController
   end
 
   def create
-    render_guard
     @section = Section.find(params[:section_id])
     @topic = @section.topics.build(topic_params)
-    @post = @topic.posts.build(:content => @topic.content_for_posts)
-    @post.user = current_user
     @topic.user = current_user
-    if @topic.save && @post.save
+    if @topic.save
       redirect_to @topic
     else
       flash[:error] = "invalid topic. :("
@@ -44,5 +42,13 @@ class TopicsController < ApplicationController
 
   def report_params
     params.require(:report_topic).permit(:description, :user, :topic, :type, :topic_id)
+  end
+
+  def login_filter
+    unless signed_in?
+      store_location
+      flash[:error] = "You are not signed in!"
+      redirect_to signin_path
+    end
   end
 end

@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :login_filter, only: [:edit, :update, :index]
+  # before_action :owner_filter, only: [:edit, :update]
+  
   def new
     @user = User.new
   end
@@ -24,5 +27,18 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :login, :email, :password, :password_confirmation)
+  end
+
+  def login_filter
+    unless signed_in?
+      store_location
+      flash[:error] = "You are not signed in!"
+      redirect_to signin_path
+    end
+  end
+
+  def owner_filter
+    @user = User.find(params[:id])
+    redirect_to root_path unless current_user? @user
   end
 end

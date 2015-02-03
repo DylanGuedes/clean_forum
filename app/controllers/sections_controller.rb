@@ -1,15 +1,13 @@
 class SectionsController < ApplicationController
+  before_action :admin_filter, only: [:new, :create]
+
   def show
     @section = Section.find(params[:id])
     @topics = @section.topics.where(:visible => true)
   end
 
   def new
-    if signed_in? && current_user.admin
-      @section = Section.new
-    else
-      flash[:notice] = "You aren't an admin. :("
-    end
+    @section = Section.new
   end
 
   def create
@@ -25,5 +23,13 @@ class SectionsController < ApplicationController
   private
   def section_params
     params.require(:section).permit(:name, :description)
+  end
+
+  def admin_filter
+    unless signed_in? && current_user.admin
+      store_location
+      flash[:error] = "You are not an admin or aren't signed in!"
+      redirect_to root_path
+    end
   end
 end

@@ -11,20 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201225600) do
+ActiveRecord::Schema.define(version: 20150203220243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "filters", force: :cascade do |t|
+    t.string   "type"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.integer  "topic_id"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.boolean  "pending",            default: false
-    t.boolean  "visible",            default: true
-    t.text     "report_description"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "visible",    default: true
   end
 
   create_table "reports", force: :cascade do |t|
@@ -44,18 +49,19 @@ ActiveRecord::Schema.define(version: 20150201225600) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id"
   end
 
   create_table "topics", force: :cascade do |t|
     t.string   "title"
     t.string   "subtitle"
     t.integer  "section_id"
-    t.boolean  "pinned"
+    t.boolean  "pinned",     default: false
     t.integer  "user_id"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.string   "content_for_posts"
-    t.boolean  "visible",           default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "visible",    default: true
+    t.text     "content"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,16 +1,12 @@
 class Topic < ActiveRecord::Base
   belongs_to :section
-  has_many :posts
   belongs_to :user
-  validates :content_for_posts, :presence => true
-  validates :title, :presence => true
+  has_many :posts
   has_many :report_topics
 
-  def has_posts?
-    if !self.posts.nil?
-      true
-    else
-      false
-    end
-  end
+  validates :content, :presence => true, :length => { minimum: 3, maximum: 9999999 }
+  validates :title, :presence => true, :length => { minimum: 5, maximum: 50 }
+  validates :subtitle, :length => { maximum: 50 }
+  validates :user_id, :presence => true
+  validates :section_id, :presence => true
 end

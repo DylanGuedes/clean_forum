@@ -1,39 +1,32 @@
 class Section < ActiveRecord::Base
-  validates :name, :presence => true
-  validates :description, :presence => true
+  belongs_to :user
+  has_many :topics
+
+  validates :name, :presence => true, :length => { minimum: 4, maximum: 50 }
+  validates :description, :presence => true, :length => { minimum: 10, maximum: 50}
+  validates :user_id, :presence => true
+
   def total_posts
-    a = self.topics
-    c = 0
-    a.each do |b|
-      c += b.posts.count
+    total = 0
+    self.topics.each do |post_count|
+      total += post_count.posts.count
     end
-    return c
+    return total
   end
 
   def last_post
-    all_topics = self.topics
-    latest_post = ""
-    if all_topics.last
-      all_topics.each do |topic|
-        if topic.has_posts?
-          posts = topic.posts
-          posts.each do |post|
-            if !latest_post.blank?
-              if latest_post.created_at < post.created_at
-                latest_post = post
-              end
-            else
-              latest_post = post
-            end
-          end
-
+    if self.topics.empty?
+      return "Empty Section. :("
+    else
+      latest = self.topics.last.posts.last
+      self.topics.each do |topic|
+        if topic.posts.last.created_at > latest.created_at
+          latest = topic.posts.last
         end
-        return latest_post
       end
-      return "no posts here! :("
+      return latest
     end
-    return "No posts here! :("
   end
 
-  has_many :topics
+  
 end

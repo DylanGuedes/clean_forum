@@ -1,15 +1,12 @@
 class AdminPanelController < ApplicationController
+  before_action :admin_filter
+
   def index
-    if current_user && !current_user.admin.nil? && current_user.admin
-      @admin = current_user
-      @users = User.where(:admin => nil)
-      @users += User.where(:admin => false)
-      @section = Section.all
-      @reports = Report.where(:pending => true)
-    else
-      flash[:notice] = "You are not an admin! :("
-      redirect_to root_path
-    end
+    @admin = current_user
+    @users = User.where(:admin => nil)
+    @users += User.where(:admin => false)
+    @section = Section.all
+    @reports = Report.where(:pending => true)
   end
 
   def disapprove_report
@@ -39,13 +36,17 @@ class AdminPanelController < ApplicationController
   end
 
   def destroy_user
-    if current_user && !current_user.admin.nil? && current_user.admin
-      @user = User.find(params[:id])
-      @user.destroy
-      redirect_to root_path
-      flash[:notice] = "User destroy'd. : D"
-    else
-      flash[:notice] = "You are not an admin! :("
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to root_path
+    flash[:notice] = "User destroy'd. :D"    
+  end
+
+  private
+  def admin_filter
+    unless signed_in? && current_user.admin
+      store_location
+      flash[:error] = "You are not an admin or aren't signed in!"
       redirect_to root_path
     end
   end
