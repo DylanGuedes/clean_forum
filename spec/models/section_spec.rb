@@ -71,12 +71,25 @@ RSpec.describe Section, :type => :model do
     end
   end
   describe '#last_post' do
-    it 'should return @other_post' do
-      expect(@section.last_post).to eq(@other_post)
+    describe 'with only one topic' do
+      it 'should return @other_post' do
+        expect(@section.last_post).to eq(@other_post)
+      end
+      it 'should return "empty section" if section.topics are empty' do
+        new_section = Section.create(:name => 'blabla', :description => 'dadad')
+        expect(new_section.last_post).to eq('Empty Section. :(')
+      end
     end
-    it 'should return "empty section" if section.topics are empty' do
-      new_section = Section.create(:name => 'blabla', :description => 'dadad')
-      expect(new_section.last_post).to eq('Empty Section. :(')
+    describe 'with more topics' do
+      before do
+        @other_topic = Topic.create!(:title => 'othertitle', :section => @section, :user => @user, :content => 'blabla')
+        @post_try = Post.create!(:user => @user, :topic => @other_topic, :content => 'aaa')        
+        @other_topic.posts.push @post_try
+        @post_second = Post.create!(:user => @user, :topic => @topic, :content => 'aaa')
+      end
+      it 'should return post_second' do
+        expect(@section.last_post).to eq(@post_second)
+      end
     end
   end
 end
