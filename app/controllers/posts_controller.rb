@@ -1,15 +1,14 @@
 class PostsController < ApplicationController
+  before_action :login_filter, only: [:new, :render_report, :create, :create_report]
   include ReportsHelper
 
   def new
-    render_guard
     @topic = Topic.find(params[:id])
     print "#{@topic}*"*50
     @post = @topic.posts.build
   end
 
   def render_report
-    render_guard
     @post = Post.find(params[:id])
     @report = ReportPost.new
   end
@@ -19,7 +18,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    render_guard
     @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.build(post_params)
     @post.user = current_user
