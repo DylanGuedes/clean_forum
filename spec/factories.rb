@@ -19,7 +19,7 @@ FactoryGirl.define do
   factory :topic do
     title                 "random title"
     subtitle              "random subtitle"
-    content_for_posts     "random content for posts"
+    content               "randomcontent"
   end
 
   factory :report_topic do
