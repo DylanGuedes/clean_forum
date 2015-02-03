@@ -61,8 +61,8 @@
         null,
         null,
         1,
-        21,
-        21,
+        22,
+        22,
         null,
         null,
         1,
@@ -302,13 +302,11 @@
         1,
         1,
         1,
-        0,
-        0,
-        0,
+        1,
         0,
         null,
-        0,
-        0,
+        1,
+        1,
         null,
         null,
         null,
@@ -407,6 +405,8 @@
         null,
         1,
         1,
+        1,
+        1,
         null
       ],
       "/home/dguedes/Desktop/forum/clean_forum/app/models/user.rb": [
@@ -416,7 +416,7 @@
         1,
         1,
         null,
-        86,
+        90,
         1,
         null,
         1,
@@ -429,17 +429,17 @@
         1,
         null,
         1,
-        83,
+        87,
         null,
         null,
         1,
-        104,
+        109,
         null,
         null,
         1,
         null,
         1,
-        68,
+        72,
         null,
         null,
         null
@@ -461,6 +461,6 @@
         null
       ]
     },
-    "timestamp": 1422996800
+    "timestamp": 1422997656
   }
 }

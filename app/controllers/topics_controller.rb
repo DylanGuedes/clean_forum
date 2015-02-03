@@ -26,10 +26,8 @@ class TopicsController < ApplicationController
     render_guard
     @section = Section.find(params[:section_id])
     @topic = @section.topics.build(topic_params)
-    @post = @topic.posts.build(:content => @topic.content_for_posts)
-    @post.user = current_user
     @topic.user = current_user
-    if @topic.save && @post.save
+    if @topic.save
       redirect_to @topic
     else
       flash[:error] = "invalid topic. :("

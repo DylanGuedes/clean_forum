@@ -5,15 +5,14 @@ RSpec.describe TopicsController, :type => :controller do
 
   before do
     @section = FactoryGirl.create(:section)
-    @user = FactoryGirl.create(:user)
-    
+    @user = FactoryGirl.create(:user)    
   end
 
   let(:valid_attributes){ FactoryGirl.attributes_for :topic }
   let(:invalid_attributes){ FactoryGirl.attributes_for :topic, title: '' }
 
   describe "GET" do
-    subject { @topic = FactoryGirl.create(:topic) }
+    subject { @topic = FactoryGirl.create(:topic, :user => @user, :section => @section) }
     describe '#new' do      
       context "logged user" do
         it "should render the new page with success" do
@@ -51,7 +50,7 @@ RSpec.describe TopicsController, :type => :controller do
   describe "POST" do
     describe '#create' do
       context "with valid params" do
-        subject { post :create, topic: valid_attributes, :section_id => @section.id }
+        subject { post :create, topic: valid_attributes, :section_id => @section.id, :content => 'dasdsadsad' }
         it "should return success" do
           sign_in @user
           expect(subject).to have_http_status(:success)
