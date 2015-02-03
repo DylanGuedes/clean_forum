@@ -6,4 +6,9 @@ FactoryGirl.define do
     password              "test123"
     password_confirmation "test123"
   end
+
+  factory :section do
+    name                  "an idiot section"
+    description           "a stupid description"
+  end
 end

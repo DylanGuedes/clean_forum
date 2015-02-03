@@ -9,6 +9,7 @@ class SectionsController < ApplicationController
       @section = Section.new
     else
       flash[:notice] = "You aren't an admin. :("
+      redirect_to root_path
     end
   end
 

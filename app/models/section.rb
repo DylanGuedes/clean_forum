@@ -12,27 +12,17 @@ class Section < ActiveRecord::Base
 
   def last_post
     all_topics = self.topics
-    latest_post = ""
-    if all_topics.last
+    if all_topics.empty?
+      return "Empty Section. :("
+    else
+      latest = all_topics.last.posts.last
       all_topics.each do |topic|
-        if topic.has_posts?
-          posts = topic.posts
-          posts.each do |post|
-            if !latest_post.blank?
-              if latest_post.created_at < post.created_at
-                latest_post = post
-              end
-            else
-              latest_post = post
-            end
-          end
-
+        if topic.created_at > latest.created_at
+          latest = topic
         end
-        return latest_post
       end
-      return "no posts here! :("
+      return latest
     end
-    return "No posts here! :("
   end
 
   has_many :topics
