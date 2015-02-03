@@ -13,7 +13,7 @@ FactoryGirl.define do
   end
 
   factory :post do
-    content               "random content"
+    content               "random content"  
   end
 
   factory :topic do

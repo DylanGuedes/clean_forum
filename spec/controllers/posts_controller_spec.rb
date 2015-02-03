@@ -6,8 +6,9 @@ RSpec.describe PostsController, :type => :controller do
   before do
     @user = FactoryGirl.create(:user)
     sign_in @user
-    @post = FactoryGirl.create(:post)
-    @topic = FactoryGirl.create(:topic)
+    @section = FactoryGirl.create(:section)
+    @topic = FactoryGirl.create(:topic, :user => @user, :section => @section)
+    @post = FactoryGirl.create(:post, :user => @user, :topic => @topic)    
   end
 
   describe "GET" do

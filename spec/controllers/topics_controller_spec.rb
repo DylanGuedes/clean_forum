@@ -54,7 +54,7 @@ RSpec.describe TopicsController, :type => :controller do
         subject { post :create, topic: valid_attributes, :section_id => @section.id }
         it "should return success" do
           sign_in @user
-          expect(subject).to have_http_status(:redirect)
+          expect(subject).to have_http_status(:success)
         end
       end
       # context "with invalid params" do

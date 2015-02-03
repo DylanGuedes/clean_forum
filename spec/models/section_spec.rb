@@ -2,13 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Section, :type => :model do
   before do
+    @user = FactoryGirl.create(:user)
     @section = FactoryGirl.create(:section)
-    @topic = FactoryGirl.create(:topic)
-    @topic.section = @section
-    @post = FactoryGirl.create(:post)
-    @topic.posts.push @post
-    @other_post = Post.create(:content => 'blablabla')
-    @topic.posts.push @other_post
+    @topic = FactoryGirl.create(:topic, :user => @user, :section => @section)
+    @post = FactoryGirl.create(:post, :user => @user, :topic => @topic)
+    @other_post = Post.create(:content => 'blablabla', :user => @user, :topic => @topic)
     @topic.save
   end
   describe '#total_posts' do
