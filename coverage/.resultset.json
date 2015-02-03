@@ -50,14 +50,14 @@
       "/home/dguedes/Desktop/forum/clean_forum/app/helpers/sessions_helper.rb": [
         1,
         1,
-        16,
-        16,
-        16,
-        16,
+        15,
+        15,
+        15,
+        15,
         null,
         null,
         1,
-        17,
+        16,
         null,
         null,
         1,
@@ -149,19 +149,6 @@
         1,
         null,
         null,
-        1,
-        1,
-        null
-      ],
-      "/home/dguedes/Desktop/forum/clean_forum/app/models/report_topic.rb": [
-        1,
-        1,
-        1,
-        null,
-        null,
-        null
-      ],
-      "/home/dguedes/Desktop/forum/clean_forum/app/models/report.rb": [
         1,
         1,
         null
@@ -372,6 +359,11 @@
         1,
         null
       ],
+      "/home/dguedes/Desktop/forum/clean_forum/app/models/report.rb": [
+        1,
+        1,
+        null
+      ],
       "/home/dguedes/Desktop/forum/clean_forum/app/models/section.rb": [
         1,
         1,
@@ -416,8 +408,8 @@
         1,
         1,
         1,
-        1,
-        46,
+        null,
+        45,
         1,
         null,
         1,
@@ -429,11 +421,11 @@
         1,
         null,
         1,
-        43,
+        42,
         null,
         null,
         1,
-        66,
+        65,
         null,
         null,
         1,
@@ -451,8 +443,16 @@
         null,
         null,
         null
+      ],
+      "/home/dguedes/Desktop/forum/clean_forum/app/models/report_topic.rb": [
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
       ]
     },
-    "timestamp": 1422989767
+    "timestamp": 1422990325
   }
 }
