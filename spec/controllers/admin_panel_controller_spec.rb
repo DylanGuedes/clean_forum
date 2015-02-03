@@ -21,6 +21,13 @@ RSpec.describe AdminPanelController, :type => :controller do
       end
     end
 
+    # describe '#disapprove_report' do
+    #   @report = FactoryGirl.create(:report_topic)
+    #   it "should return success" do
+    #     get :disapprove_report, :report_id => @report
+    #     expect(response).to have_http_status(:redirect)
+    #   end
+    # end
   end
 
 

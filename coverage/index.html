@@ -14,7 +14,7 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-02-03T16:53:56-02:00">2015-02-03T16:53:56-02:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-02-03T16:56:08-02:00">2015-02-03T16:56:08-02:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,7 +25,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.05
+         2.1
        </span>
     </span> hits/line)
   </h2>
@@ -197,7 +197,7 @@
         <td>21</td>
         <td>21</td>
         <td>0</td>
-        <td>7.3</td>
+        <td>7.6</td>
       </tr>
       
       <tr>
@@ -287,7 +287,7 @@
         <td>18</td>
         <td>18</td>
         <td>0</td>
-        <td>10.4</td>
+        <td>10.8</td>
       </tr>
       
     </tbody>
@@ -420,7 +420,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         4.13
+         4.27
        </span>
     </span> hits/line)
   </h2>
@@ -512,7 +512,7 @@
         <td>18</td>
         <td>18</td>
         <td>0</td>
-        <td>10.4</td>
+        <td>10.8</td>
       </tr>
       
     </tbody>
@@ -564,7 +564,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         3.72
+         3.86
        </span>
     </span> hits/line)
   </h2>
@@ -656,7 +656,7 @@
         <td>21</td>
         <td>21</td>
         <td>0</td>
-        <td>7.3</td>
+        <td>7.6</td>
       </tr>
       
       <tr>
@@ -2683,26 +2683,26 @@
           <code class="ruby">  def sign_in(user)</code>
         </li>
       
-        <li class="covered" data-hits="15" data-linenumber="3">
-          <span class="hits">15</span>
+        <li class="covered" data-hits="16" data-linenumber="3">
+          <span class="hits">16</span>
           
           <code class="ruby">    remember_token = User.new_remember_token</code>
         </li>
       
-        <li class="covered" data-hits="15" data-linenumber="4">
-          <span class="hits">15</span>
+        <li class="covered" data-hits="16" data-linenumber="4">
+          <span class="hits">16</span>
           
           <code class="ruby">    cookies.permanent[:remember_token] = remember_token</code>
         </li>
       
-        <li class="covered" data-hits="15" data-linenumber="5">
-          <span class="hits">15</span>
+        <li class="covered" data-hits="16" data-linenumber="5">
+          <span class="hits">16</span>
           
           <code class="ruby">    user.update_attribute(:remember_token, User.digest(remember_token))</code>
         </li>
       
-        <li class="covered" data-hits="15" data-linenumber="6">
-          <span class="hits">15</span>
+        <li class="covered" data-hits="16" data-linenumber="6">
+          <span class="hits">16</span>
           
           <code class="ruby">    self.current_user = user</code>
         </li>
@@ -2725,8 +2725,8 @@
           <code class="ruby">  def current_user=(user)</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="10">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="17" data-linenumber="10">
+          <span class="hits">17</span>
           
           <code class="ruby">    @current_user = user</code>
         </li>
@@ -3421,8 +3421,8 @@
           <code class="ruby">  has_many :report_posts</code>
         </li>
       
-        <li class="covered" data-hits="44" data-linenumber="5">
-          <span class="hits">44</span>
+        <li class="covered" data-hits="46" data-linenumber="5">
+          <span class="hits">46</span>
           
           <code class="ruby">  before_save { self.login = login.downcase }</code>
         </li>
@@ -3493,8 +3493,8 @@
           <code class="ruby">  def User.new_remember_token</code>
         </li>
       
-        <li class="covered" data-hits="41" data-linenumber="17">
-          <span class="hits">41</span>
+        <li class="covered" data-hits="43" data-linenumber="17">
+          <span class="hits">43</span>
           
           <code class="ruby">    SecureRandom.urlsafe_base64</code>
         </li>
@@ -3517,8 +3517,8 @@
           <code class="ruby">  def User.digest(token)</code>
         </li>
       
-        <li class="covered" data-hits="64" data-linenumber="21">
-          <span class="hits">64</span>
+        <li class="covered" data-hits="66" data-linenumber="21">
+          <span class="hits">66</span>
           
           <code class="ruby">    Digest::SHA1.hexdigest(token.to_s)</code>
         </li>
@@ -3553,8 +3553,8 @@
           <code class="ruby">  def create_remember_token</code>
         </li>
       
-        <li class="covered" data-hits="25" data-linenumber="27">
-          <span class="hits">25</span>
+        <li class="covered" data-hits="26" data-linenumber="27">
+          <span class="hits">26</span>
           
           <code class="ruby">    self.remember_token = User.digest(User.new_remember_token)</code>
         </li>
