@@ -33,7 +33,6 @@ RSpec.describe PostsController, :type => :controller do
         @topic.save
         get :show, :id => @post.id
         expect(response).to render_template('topics/show')
-
       end
     end
   end
