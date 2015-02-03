@@ -33,4 +33,15 @@ RSpec.describe SectionsController, :type => :controller do
       end
     end
   end
+
+  describe "POST #create" do
+    context "with valid params" do
+      it "should return the last section if the section was created" do
+        @user.admin = true
+        @user.save
+        post :create, :section => { :name => 'Randomname', :description => 'Randomdescription' }
+        expect(Section.last).to eq(Section.find_by(:name => 'Randomname'))
+      end
+    end
+  end
 end
