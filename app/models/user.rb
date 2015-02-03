@@ -12,7 +12,11 @@ class User < ActiveRecord::Base
                           uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }
   validates :name, length: { maximum: 50 }
+  validates :email, :uniqueness => true
   has_secure_password
+
+  valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, :format => { with: valid_email_regex }
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64
