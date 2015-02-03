@@ -3,14 +3,14 @@ require 'rails_helper'
 RSpec.describe Topic, :type => :model do
   before do
     @user = FactoryGirl.create(:user)
-    @section = FactoryGirl.create(:section)
+    @section = FactoryGirl.create(:section, :user => @user)
     @topic = FactoryGirl.create(:topic, :user => @user, :section => @section)
   end
 
   it { 
     #insert new attributes here
     expect(@topic).to respond_to(:content, :user_id, :section_id, :report_topics, :visible, :title, :subtitle,
-      :pinned)
+      :pinned, :posts)
    }
 
   it { expect(@topic).to be_valid }

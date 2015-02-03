@@ -4,8 +4,8 @@ RSpec.describe TopicsController, :type => :controller do
   include SessionsHelper
 
   before do
-    @section = FactoryGirl.create(:section)
     @user = FactoryGirl.create(:user)    
+    @section = FactoryGirl.create(:section, :user => @user)    
   end
 
   let(:valid_attributes){ FactoryGirl.attributes_for :topic }

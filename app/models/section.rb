@@ -1,6 +1,10 @@
 class Section < ActiveRecord::Base
-  validates :name, :presence => true
-  validates :description, :presence => true
+  belongs_to :user
+  has_many :topics
+
+  validates :name, :presence => true, :length => { minimum: 4, maximum: 50 }
+  validates :description, :presence => true, :length => { minimum: 10, maximum: 50}
+  validates :user_id, :presence => true
 
   def total_posts
     total = 0
@@ -24,5 +28,5 @@ class Section < ActiveRecord::Base
     end
   end
 
-  has_many :topics
+  
 end
