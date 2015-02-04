@@ -6,8 +6,13 @@ RSpec.describe SectionsController, :type => :controller do
   before do
     @user = FactoryGirl.create(:user)
     @section = FactoryGirl.create(:section, :user => @user)
+    @admin = User.create(:login => 'novonovologin', :admin => true, :password => '123456', :password_confirmation => '123456', :email => '1234567dass@sdad.com')
     sign_in @user
   end
+
+  let(:valid_attributes){ FactoryGirl.attributes_for :section, :user_id => @admin.id }
+  let(:invalid_attributes){ FactoryGirl.attributes_for :section, :description => 'a', :user_id => @admin.id }
+
 
   describe "GET" do
     describe '#show' do
@@ -35,15 +40,20 @@ RSpec.describe SectionsController, :type => :controller do
   end
 
   describe "POST #create" do
-    # context "with valid params" do
-    #   it "should return the last section if the section was created" do
-    #     post :create, :section => { :name => 'Randomname', :description => 'Randomdescription', :user => @user }
-    #     expect(Section.last).to eq(Section.find_by(:name => 'Randomname'))
-    #   end
-    # end
+    context "with valid params" do
+      subject { post :create, :section => valid_attributes }
+      it "should increase total number of sections" do
+        sign_out
+        sign_in @admin
+        expect{ subject }.to change(Section, :count).by(1)
+      end
+    end
     context "with invalid params" do
+      subject { post :create, :section => invalid_attributes }
       it "should render new" do
-        post :create, :section => { :name => '', :description => '' }
+        sign_out
+        sign_in @admin
+        subject
         expect(response).to render_template(:new)
       end
     end
