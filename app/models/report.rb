@@ -3,4 +3,8 @@ class Report < ActiveRecord::Base
 
   validates :user_id, :presence => true
   validates :description, :presence => true, :length => { minimum: 15, maximum: 500 }
+
+  def already_disapproved?
+    !self.pending
+  end
 end

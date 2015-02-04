@@ -11,11 +11,11 @@ class AdminPanelController < ApplicationController
 
   def disapprove_report
     @report = Report.find(params[:report_id])
-    @report.pending = false
-    @report.accepted = false
-    @report.save
-    flash[:success] = "Report disapproved!"
-    redirect_to root_path
+    unless @report.already_disapproved?  
+      @report.update_attributes(:pending => false, :accepted => false, :user => current_user)
+      flash[:success] = "Report disapproved!"
+      redirect_to admin_path
+    end
   end
 
   def approve_report
