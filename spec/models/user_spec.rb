@@ -110,7 +110,7 @@ RSpec.describe User, :type => :model do
     end
     describe 'admin' do
       it 'must have default value false' do
-        expect(@user.admin).to eq(nil)
+        expect(@user.admin).to eq(false)
       end
     end
   end

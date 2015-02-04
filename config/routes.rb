@@ -16,9 +16,10 @@ Rails.application.routes.draw do
   post '/report_topics' => 'topics#create_report'
 
   #adminpanel controller
+  get '/admin_panel' => 'admin_panel#index'
   get '/admin' => 'admin_panel#index'
   get '/admin_panel/destroy_user/:id' => 'admin_panel#destroy_user'
-  get '/admin_panel/disapprove_report/:report_id' => 'admin_panel#disapprove_report'
+  put '/admin_panel/disapprove_report/:report_id' => 'admin_panel#disapprove_report'
   get '/admin_panel/approve_report/:report_id' => 'admin_panel#approve_report'
   
   #sessions controller

@@ -11,7 +11,7 @@ RSpec.describe Report, :type => :model do
 
   it {
       #insert new attributes here
-      expect(@report).to respond_to(:description, :user_id, :user)
+      expect(@report).to respond_to(:description, :user_id, :user, :pending)
      }
   it { expect(@report).to be_valid }
 
@@ -36,6 +36,11 @@ RSpec.describe Report, :type => :model do
         it 'should not be allowed' do
           expect(@report).not_to be_valid
         end
+      end
+    end
+    describe 'pending' do
+      it 'must have default value true' do
+        expect(@report.pending).to eq(true)
       end
     end
   end
