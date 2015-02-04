@@ -48,11 +48,10 @@ RSpec.describe TopicsController, :type => :controller do
   describe "POST" do
     describe '#create' do
       context "with valid params" do
-        subject { post :create, topic: valid_attributes, :section_id => @section.id, :content => 'dasdsadsad', :user => @user }
+        subject { post :create, topic: valid_attributes, :section_id => @section.id }
         it "should return success" do
           sign_in @user
-          expect(subject).to change(Topic, :count).by(1)
-          expect(subject).to have_http_status(:success)
+          expect{ subject }.to change(Topic, :count).by(1)
         end
       end
       # context "with invalid params" do
