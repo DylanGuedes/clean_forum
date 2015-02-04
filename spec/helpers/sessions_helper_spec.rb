@@ -18,6 +18,14 @@ RSpec.describe SessionsHelper, :type => :helper do
     sign_in @user
   end
 
+  describe '#current_user?' do
+    context 'compared with @user' do
+      it 'should return true' do
+        expect(current_user? @user).to eq(true)
+      end
+    end
+  end
+
   # it "should return signed_in? true for a logged user" do  -> This test can't work because the session
   #   current_user = @user                                         object can't be find
   #   expect(@user.signed_in?).to eq(true)

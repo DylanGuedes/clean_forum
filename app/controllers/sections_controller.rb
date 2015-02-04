@@ -22,7 +22,7 @@ class SectionsController < ApplicationController
 
   private
   def section_params
-    params.require(:section).permit(:name, :description)
+    params.require(:section).permit(:name, :description, :user_id)
   end
 
   def admin_filter
