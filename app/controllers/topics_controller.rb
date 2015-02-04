@@ -23,21 +23,18 @@ class TopicsController < ApplicationController
     shared_report "ReportTopic"
   end
 
-  def create
+  def create    
     @section = Section.find(params[:section_id])
-    @topic = @section.topics.build(topic_params)
+    pluralized_topic = @section.topics
+    #prepare_create type, type_params, pluralized_type
+    @topic = prepare_create Topic, topic_params, pluralized_topic
     @topic.user = current_user
-    if @topic.save
-      redirect_to @topic
-    else
-      flash[:error] = "invalid topic. :("
-      render 'new'
-    end
+    create_save @topic
   end
 
   private
   def topic_params
-    params.require(:topic).permit(:title, :subtitle, :section, :content_for_posts)
+    params.require(:topic).permit(:title, :subtitle, :section_id, :content, :user_id)
   end
 
   def report_params

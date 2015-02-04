@@ -14,6 +14,7 @@ RSpec.describe UsersController, :type => :controller do
     end
     describe '#index' do
       it "should have http_status success" do
+        sign_in @user
         get :index
         expect(response).to have_http_status(:success)
       end

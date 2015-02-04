@@ -19,8 +19,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    @topic = Topic.find(params[:topic_id])
-    @post = @topic.posts.build(post_params)
+    @topic = Topic.find(params[:topic_id])    
+    pluralized_post = @topic.posts
+    #prepare_create type, type_params, pluralized_type    
+    @post = prepare_create Post, post_params, pluralized_post
     @post.user = current_user
     create_save @post
   end

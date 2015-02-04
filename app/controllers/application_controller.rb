@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
     type = father
   end
 
+  def prepare_create type_class, type_params, pluralized_type
+    type = pluralized_type.build(type_params)
+    return type
+  end
+
   def create_save type
     if type.save
       redirect_to type
