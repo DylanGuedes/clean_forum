@@ -49,26 +49,17 @@ RSpec.describe TopicsController, :type => :controller do
     describe '#create' do
       context "with valid params" do
         subject { post :create, topic: valid_attributes, :section_id => @section.id }
-        it "should return success" do
+        it "should increase total number of users" do
           sign_in @user
           expect{ subject }.to change(Topic, :count).by(1)
         end
       end
-      # context "with invalid params" do
-      #   subject { post :create, topic: invalid_attributes, :section_id => @section.id }
-      #   it 'should re-render #new' do
-      #     expect(subject).to have_http_status(:redirect)
-      #   end
-      # end
+      context "with invalid params" do
+        subject { post :create, topic: invalid_attributes, :section_id => @section.id }
+        it 'should not increase total number of users' do
+          expect{ subject }.not_to change(Topic, :count)
+        end
+      end
     end
-    # describe '#create_report' do
-    #   it "should work" do
-    #     @topic = FactoryGirl.create(:topic)
-    #     @report = FactoryGirl.create(:report_topic)
-    #     sign_in @user
-    #     get :create_report, :report_topic => @report, :topic_id => @topic.id  -> not passing tt
-    #     expect(response).to have_http_status(:success)
-    #   end
-    # end
   end
 end

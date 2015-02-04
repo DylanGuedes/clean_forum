@@ -35,9 +35,8 @@ RSpec.describe SessionsController, :type => :controller do
     it "should sign out a logged user" do
       sign_in @user
       expect(signed_in?).to eq(true)
-      # get :destroy           -> not working atm, using sign_out instead
-      sign_out
-      expect(signed_in?).to eq(false)
+      delete :destroy          # -> not working atm, using sign_out instead
+      expect(session[@user.id]).to eq(nil)
     end
   end
 end
