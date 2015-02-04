@@ -23,8 +23,16 @@ FactoryGirl.define do
   end
 
   factory :report_topic do
-    description           "a description"
+    description           "a description"*10
     type                  "ReportTopic"
+  end
 
+  factory :report_post do
+    description           "a descriptionvfasfvasfsavvfasvfsaf"*2
+    type                  "ReportPost"
+  end
+
+  factory :report do
+    description           "a dadsuadhasodahodiaushdasdhusauidhasd"*2
   end
 end
