@@ -8,8 +8,11 @@ RSpec.describe AdminPanelController, :type => :controller do
     @admin = FactoryGirl.create(:user, :admin => true, :email => 'anovoemail@das.com', :login => 'adsadaaadmin')
     @section = FactoryGirl.create(:section, :user => @admin)
     @topic = FactoryGirl.create(:topic, :user => @user, :section => @section)
-    @report = FactoryGirl.create(:report, :user => @user)
+    @report = FactoryGirl.create(:report, :user => @admin)
+    @report_topic = FactoryGirl.create(:report_topic, :user => @admin, :topic => @topic)
   end
+
+
 
   describe "GET" do
     subject { get :index }
@@ -33,11 +36,11 @@ RSpec.describe AdminPanelController, :type => :controller do
     end
   end
 
-  describe 'PUT' do
+  describe 'POST' do
     describe '#disapprove_report' do
       describe 'with unlogged user' do
         before { @user.admin = true ; @user.save ; sign_out } # -> the user is an admin, but isn't signed in
-        subject { put :disapprove_report, :report_id => @report.id }
+        subject { post :disapprove_report, :report_id => @report.id }
         it 'must redirect to root path' do
           expect(subject).to redirect_to root_path
         end
@@ -46,7 +49,7 @@ RSpec.describe AdminPanelController, :type => :controller do
         end
       end
       describe "with logged user that isn't an admin" do
-        subject { put :disapprove_report, :report_id => @report.id }
+        subject { post :disapprove_report, :report_id => @report.id }
         it 'must redirect to root_path' do
           expect(current_user.admin).to eq(false)
           expect(subject).to redirect_to root_path
@@ -57,16 +60,66 @@ RSpec.describe AdminPanelController, :type => :controller do
       end
       describe 'with logged user that is an admin' do
         before { sign_out ; sign_in @admin }
-        subject { put :disapprove_report, :report_id => @report.id }
+        subject { post :disapprove_report, :report_id => @report.id }
 
         # it 'should change report pending to false' do
         #   expect(@report.pending).to eq(true)                               #  -> initial value
         #   expect{ subject }.to change{ @report.pending }                    #  -> not working tt
         # end
         it "must redirect back to admin path if the report isn't done" do
-          expect(subject).to redirect_to admin_path                         # -> worked
+          expect(subject).to redirect_to admin_panel_path                         # -> worked
         end
       end
+    end
+    describe '#approve_report' do
+      describe 'for a report_topic' do
+        subject { post :approve_report, :report_id => @report_topic.id }
+        context 'with unlogged user' do
+          before { sign_out }          
+          it 'must be redirected to root_path' do
+            expect(subject).to redirect_to root_path
+          end
+          it 'must not change the report' do
+            expect{ subject }.not_to change{ @report_topic }
+          end
+        end 
+        context "with logged user that isn't an admin" do
+          it 'must be returned to root_path' do
+            expect(subject).to redirect_to root_path
+          end
+          it 'must not change the report' do
+            expect{ subject }.not_to change{ @report_topic }
+          end
+        end
+        context 'with logged user that is an admin' do
+          before { sign_out ; sign_in @admin }
+          it 'must change report_topic' do
+            expect{ subject }.to change{ @report_topic }
+          end
+          it 'must be redirected to admin path' do
+            expect(subject).to redirect_to admin_panel_path
+          end
+          # it 'must change reported topic visible to false' do
+          #   put :approve_report, :report_id => @report_topic.id
+          #   expect{ subject }.to change{ @report_topic }
+          # end
+          # it 'must change pending to false' do
+          #   subject
+          #   expect(@report_topic.pending).to eq(false)
+          #   # expect(subject).to change(@report_topic.pending).to false
+          # end
+          # it 'must change accepted to true' do
+          #   # expect{ subject }.to change{ @report_topic.accepted }.to true
+          #   subject
+          #   expect(@report_topic.accepted).to eq(true)
+          # end
+
+        end
+
+      end
+      # describe 'for a report_post' do
+
+      # end
     end
   end
 end

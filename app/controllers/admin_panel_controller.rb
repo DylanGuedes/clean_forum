@@ -14,7 +14,7 @@ class AdminPanelController < ApplicationController
     unless @report.done?  
       @report.update_attributes!(:pending => false, :accepted => false)
       flash[:success] = "Report disapproved!"
-      redirect_to admin_path
+      redirect_to admin_panel_path
     end
   end
 
@@ -32,7 +32,8 @@ class AdminPanelController < ApplicationController
     end
     @report.accepted = true
     @report.save
-    redirect_to root_path
+    puts "#{@report.inspect}"+"TAAQUI1111"
+    redirect_to admin_panel_path
   end
 
   def destroy_user
