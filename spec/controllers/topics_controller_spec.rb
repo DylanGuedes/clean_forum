@@ -61,5 +61,23 @@ RSpec.describe TopicsController, :type => :controller do
         end
       end
     end
+    describe '#create_report' do
+      describe 'with unlogged user' do
+        before { sign_in @user ; sign_out }                               # -> the user is signed in and out
+        subject { post :create_report, :report => @report_topic }
+        it 'must be redirected to signin_path' do
+          expect(subject).to redirect_to signin_path
+        end
+        it 'must not change the reports count' do
+          expect{ subject }.not_to change(Report, :count)
+        end
+      end
+      describe "with logged user that isn't an admin" do
+        before { sign_in @user }
+        it 'must change total number of users' do
+          expect{ subject }.to change(Report, :count)
+        end
+      end
+    end
   end
 end
