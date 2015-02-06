@@ -10,9 +10,9 @@ RSpec.describe AdminPanelController, :type => :controller do
     @topic = FactoryGirl.create(:topic, :user => @user, :section => @section)
     @report = FactoryGirl.create(:report, :user => @admin)
     @report_topic = FactoryGirl.create(:report_topic, :user => @admin, :topic => @topic)
+    @post = FactoryGirl.create(:post, :user => @user, :topic => @topic)
+    @report_post = FactoryGirl.create(:report_post, :user => @user, :post => @post)
   end
-
-
 
   describe "GET" do
     subject { get :index }
@@ -117,9 +117,67 @@ RSpec.describe AdminPanelController, :type => :controller do
         end
 
       end
-      # describe 'for a report_post' do
+      describe 'for a report_post' do
+        subject { post :approve_report, :report_id => @report_post.id }
+        context 'with unlogged user' do
+          before { sign_out }          
+          it 'must be redirected to root_path' do
+            expect(subject).to redirect_to root_path
+          end
+          it 'must not change the report' do
+            expect{ subject }.not_to change{ @report_post }
+          end
+        end 
+        context "with logged user that isn't an admin" do
+          it 'must be returned to root_path' do
+            expect(subject).to redirect_to root_path
+          end
+          it 'must not change the report' do
+            expect{ subject }.not_to change{ @report_post }
+          end
+        end
+        context 'with logged user that is an admin' do
+          before { sign_out ; sign_in @admin }
+          it 'must change report_post' do
+            expect{ subject }.to change{ @report_post }
+          end
+          it 'must be redirected to admin path' do
+            expect(subject).to redirect_to admin_panel_path
+          end
+        end
+      end
+    end
+  end
 
-      # end
+  describe 'DELETE' do
+    describe '#destroy_user' do
+      subject { delete :destroy_user, :id => @user }
+      describe 'with unlogged user' do
+        before { sign_out }        
+        it 'must be redirected to root_path' do
+          expect(subject).to redirect_to root_path
+        end
+        it 'must not change total number of users' do
+          expect{ subject }.not_to change(User, :count)
+        end
+      end
+      describe "with logged user that isn't an admin" do        
+        it 'must be redirected to root_path' do
+          expect(subject).to redirect_to root_path
+        end
+        it 'must not change total number of users' do
+          expect{ subject }.not_to change(User, :count)
+        end
+      end
+      describe 'with logged user that is an admin' do
+        before { sign_out ; sign_in @admin }
+        it 'must decrease total number of users' do
+          expect{ subject }.to change(User, :count).by(-1)
+        end
+        it 'must redirect to admins panel path' do
+          expect(subject).to redirect_to admin_panel_path
+        end
+      end
     end
   end
 end

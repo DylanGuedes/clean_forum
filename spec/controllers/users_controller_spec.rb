@@ -25,9 +25,11 @@ RSpec.describe UsersController, :type => :controller do
         end
       end
       context 'non-signed user' do
+        subject { get :index }
         it 'should be redirected to signin path' do
           get :index
           expect(response).to have_http_status(:redirect)
+          expect(subject).to redirect_to signin_path
         end
       end
     end
@@ -43,9 +45,10 @@ RSpec.describe UsersController, :type => :controller do
     describe '#create' do
       context 'with valid params' do
         subject { post :create, :user => valid_attributes }
-        it "should create user if the params are correct" do
+        it "should create user show page" do
           subject
-          expect(get :show, :id => User.last.id).to have_http_status(:success)
+          new_user = User.find_by(:login => 'anotherloginnow')
+          expect(get :show, :id => new_user.id).to have_http_status(:success)
         end
         it "should increase total number of users" do
           expect { subject }.to change(User, :count).by(1)

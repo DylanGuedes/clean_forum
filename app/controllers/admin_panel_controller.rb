@@ -23,7 +23,6 @@ class AdminPanelController < ApplicationController
     @report.pending = false
     if @report.kind_of? ReportTopic
       @report.topic.visible = false
-      @report.topic.save
       flash[:success] = "Topic ##{@report.topic.id} is invisible now!"
     else
       @report.post.visible = false
@@ -39,8 +38,8 @@ class AdminPanelController < ApplicationController
   def destroy_user
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to root_path
-    flash[:notice] = "User destroy'd. :D"    
+    flash[:notice] = "User destroy'd. :D"  
+    redirect_to admin_panel_path
   end
 
   private

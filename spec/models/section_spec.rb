@@ -4,7 +4,7 @@ RSpec.describe Section, :type => :model do
   before do
     @user = FactoryGirl.create(:user)
     @section = FactoryGirl.create(:section, :user => @user)
-    @topic = FactoryGirl.create(:topic, :user => @user, :section => @section)
+    @topic = FactoryGirl.create(:topic, :user_id => @user.id, :section_id => @section.id)
     @post = FactoryGirl.create(:post, :user => @user, :topic => @topic)
     @other_post = Post.create(:content => 'blablabla', :user => @user, :topic => @topic)
     @topic.save
@@ -90,6 +90,11 @@ RSpec.describe Section, :type => :model do
       it 'should return post_second' do
         expect(@section.last_post).to eq(@post_second)
       end
+    end
+  end
+  describe '#has_posts?' do
+    it 'must return true since the section has posts' do
+      expect(@section.has_posts?).to eq(true)
     end
   end
 end

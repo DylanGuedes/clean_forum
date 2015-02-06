@@ -5,7 +5,6 @@ class PostsController < ApplicationController
 
   def new
     @topic = Topic.find(params[:id])
-    print "#{@topic}*"*50
     @post = @topic.posts.build
   end
 
@@ -18,13 +17,11 @@ class PostsController < ApplicationController
     shared_report "ReportPost"
   end
 
-  def create
-    @topic = Topic.find(params[:topic_id])    
+  def create                                                                # => need factor
+    @topic = Topic.find(params[:topic_id])                                  # => need factor
     pluralized_post = @topic.posts
     #prepare_create type, type_params, pluralized_type    
-    @post = prepare_create Post, post_params, pluralized_post
-    @post.user = current_user
-    create_save @post
+    prepare_create Post, post_params, pluralized_post
   end
 
   def show
@@ -37,11 +34,11 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :topic, :user)
+    params.require(:post).permit(:content, :topic, :user, :user_id)
   end
 
   def report_params
-    params.require(:report_post).permit(:description, :user, :post, :type, :post_id)
+    params.require(:report_post).permit(:description, :user_id, :post, :type, :post_id)
   end
 
   def login_filter

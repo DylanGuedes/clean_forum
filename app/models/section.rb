@@ -15,17 +15,11 @@ class Section < ActiveRecord::Base
   end
 
   def has_posts?
-    x = false
-    self.topics.each do |topic|
-      unless topic.posts.empty?
-        x = true
-      end
-    end
-    return x
+    not self.topics.empty?
   end
 
   def last_post
-    if self.topics.empty? && !has_posts?
+    if self.topics.empty?
       return "Empty Section. :("
     else      
       latest = self.topics.last.posts.last
