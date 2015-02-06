@@ -25,11 +25,9 @@ class TopicsController < ApplicationController
 
   def create    
     @section = Section.find(params[:section_id])
-    pluralized_topic = @section.topics
     #prepare_create type, type_params, pluralized_type
-    @topic = prepare_create Topic, topic_params, pluralized_topic
-    @topic.user = current_user
-    create_save @topic
+    puts "TA AQUI"*50
+    prepare_create Topic, topic_params, @section.topics
   end
 
   private
@@ -38,7 +36,7 @@ class TopicsController < ApplicationController
   end
 
   def report_params
-    params.require(:report_topic).permit(:description, :user, :topic, :type, :topic_id)
+    params.require(:report_topic).permit(:description, :user, :user_id, :topic, :type, :topic_id)
   end
 
   def login_filter
