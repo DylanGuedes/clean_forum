@@ -1,30 +1,56 @@
+<%= @topic.content %>
 
-  <% @posts.each do |post| %>
-  <div class="section group">
-    <div class="col span_1_of_12">
+<div class="section group">
+  <div class="col span_1_of_12">
+  </div>
+  <div class="col span_3_of_12">
+      <div id="container">
+        <center>
+          <h4>User: <%= link_to "#{@topic.user.login}", @topic.user %></h4><br>
+          <h4>Posts: <%= @topic.user.posts.count %></h4><br>
+          <h4>Warn Level: <%= @topic.user.warn %></h4>
+        <center>
+      </div>
     </div>
-    <div class="col span_3_of_12">
-        <div id="container">
-          <center>
-            <h4>User: <%= link_to "#{post.user.login}", post.user %></h4><br>
-            <h4>Posts: <%= post.user.posts.count %></h4><br>
-            <h4>Warn Level: <%= post.user.warn %></h4>
-          <center>
-        </div>
+    <div class="col span_8_of_12">
+      <div id="container"><center><h5><%= @topic.created_at %></h5></center>
+          <h4><%= @topic.content %></h4>
       </div>
-      <div class="col span_8_of_12">
-        <div id="container"><center><h5><%= post.created_at %></h5></center>
-            <h4><%= post.content %></h4>
-        </div>
-        <br><br>
+      <br><br>
+    </div>
+    <ul></ul>
       </div>
+      <div class="right"><%= link_to "Report this post", '/report_posts/'+@topic.id.to_s %></div>
       <ul></ul>
-        </div>
-        <div class="right"><%= link_to "Report this post", '/report_posts/'+post.id.to_s %></div>
-        <ul></ul>
-        <br><br>
-        <br><br>
-    <% end %>
+      <br><br>
+      <br><br>
 
-    <%= link_to 'New post', "/sections/topics/#{@topic.id}/new" %>
+<% @posts.each do |post| %>
+<div class="section group">
+  <div class="col span_1_of_12">
+  </div>
+  <div class="col span_3_of_12">
+      <div id="container">
+        <center>
+          <h4>User: <%= link_to "#{post.user.login}", post.user %></h4><br>
+          <h4>Posts: <%= post.user.posts.count %></h4><br>
+          <h4>Warn Level: <%= post.user.warn %></h4>
+        <center>
+      </div>
+    </div>
+    <div class="col span_8_of_12">
+      <div id="container"><center><h5><%= post.created_at %></h5></center>
+          <h4><%= post.content %></h4>
+      </div>
+      <br><br>
+    </div>
+    <ul></ul>
+      </div>
+      <div class="right"><%= link_to "Report this post", '/report_posts/'+post.id.to_s %></div>
+      <ul></ul>
+      <br><br>
+      <br><br>
+<% end %>
+
+  <%= link_to 'New post', "/sections/topics/#{@topic.id}/new" %>
 </div>

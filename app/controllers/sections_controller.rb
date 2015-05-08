@@ -12,6 +12,7 @@ class SectionsController < ApplicationController
 
   def create
     @section = Section.new(section_params)
+    @section.user = current_user
     if @section.save
       flash[:notice] = "Section created!"
       redirect_to root_path

@@ -31,8 +31,13 @@
       </div>
       <div class="col span_3_of_12">
         <div class="lastpost">
-          <h3>By: <%= link_to "#{topic.posts.last.user.login}", "/users/"+topic.posts.last.user.id.to_s %></h3>
-          <h3>at <%= topic.posts.last.created_at.strftime("%H:%M") %></h3>
+          <% if topic.posts.empty? %>
+            <h3>By: <%= link_to "#{topic.user.login}", "/users/"+topic.user.id.to_s %></h3>
+            <h3>at <%= topic.created_at.strftime("%H:%M") %></h3>
+          <% else %>
+            <h3>By: <%= link_to "#{topic.posts.last.user.login}", "/users/"+topic.posts.last.user.id.to_s %></h3>
+            <h3>at <%= topic.posts.last.created_at.strftime("%H:%M") %></h3>
+          <% end %>
         </div>
       </div>
     </div>

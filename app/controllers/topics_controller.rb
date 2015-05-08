@@ -23,10 +23,9 @@ class TopicsController < ApplicationController
     shared_report "ReportTopic"
   end
 
-  def create    
+  def create
     @section = Section.find(params[:section_id])
     #prepare_create type, type_params, pluralized_type
-    puts "TA AQUI"*50
     prepare_create Topic, topic_params, @section.topics
   end
 

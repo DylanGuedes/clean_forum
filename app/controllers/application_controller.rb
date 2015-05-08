@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   def prepare_create type_class, type_params, pluralized_type
     type = pluralized_type.build(type_params)
+    type.user = current_user
     if type.save
       redirect_to type
     else

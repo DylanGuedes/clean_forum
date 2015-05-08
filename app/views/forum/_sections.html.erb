@@ -30,10 +30,12 @@
       </div>
       <div class="col span_4_of_12">
       </div>
-        <% if section.last_post.class == Post %>
+        <% if section.last_post && section.last_post.class == Post %>
           <div id="lastpost">
-            <h4><%= link_to "Last Post", "/sections/topics/"+section.last_post.topic.id.to_s %></h4>
-            <h1><%= section.last_post.created_at.strftime("%H:%M") %></h1>
+            <% if section.last_post %>
+              <h4><%= link_to "Last Post", "/sections/topics/"+section.last_post.topic.id.to_s %></h4>
+              <h1><%= section.last_post.created_at.strftime("%H:%M") %></h1>
+            <% end %>
           </div>
         <% end %>
     </div>

@@ -21,10 +21,13 @@ class Section < ActiveRecord::Base
   def last_post
     if self.topics.empty?
       return "Empty Section. :("
-    else      
+    else
       latest = self.topics.last.posts.last
+      if !latest
+        return latest
+      end
       self.topics.each do |topic|
-        if topic.posts.last.created_at > latest.created_at
+        if topic.posts.last && topic.posts.last.created_at > latest.created_at
           latest = topic.posts.last
         end
       end
@@ -32,5 +35,5 @@ class Section < ActiveRecord::Base
     end
   end
 
-  
+
 end

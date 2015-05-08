@@ -1,3 +1,7 @@
 <center>
+  <% @sections.each do |s| %>
+    <%= s.name %>
+
+  <% end %>
   <h1><%= link_to "New Section", '/new_section' %></h1>
 </center>

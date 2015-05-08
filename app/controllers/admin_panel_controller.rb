@@ -5,13 +5,13 @@ class AdminPanelController < ApplicationController
     @admin = current_user
     @users = User.where(:admin => nil)
     @users += User.where(:admin => false)
-    @section = Section.all
+    @sections = Section.all
     @reports = Report.where(:pending => true)
   end
 
   def disapprove_report
     @report = Report.find(params[:report_id])
-    unless @report.done?  
+    unless @report.done?
       @report.update_attributes!(:pending => false, :accepted => false)
       flash[:success] = "Report disapproved!"
       redirect_to admin_panel_path
@@ -38,7 +38,7 @@ class AdminPanelController < ApplicationController
   def destroy_user
     @user = User.find(params[:id])
     @user.destroy
-    flash[:notice] = "User destroy'd. :D"  
+    flash[:notice] = "User destroy'd. :D"
     redirect_to admin_panel_path
   end
 
