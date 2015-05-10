@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :login_filter, only: [:edit, :update, :index]
   # before_action :owner_filter, only: [:edit, :update]
-  
+
   def new
     @user = User.new
   end
@@ -12,12 +12,26 @@ class UsersController < ApplicationController
       sign_in @user
       redirect_to @user
     else
+      flash[:error] = "Invalid!"
       render 'new'
     end
   end
 
   def index
     @users = User.all
+  end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    if current_user.update_attributes(user_params)
+      flash[:success] = "Done!"
+    else
+      flash[:error] = "Error!"
+    end
+    redirect_to edit_profile_path
   end
 
   def show
@@ -27,14 +41,6 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :login, :email, :password, :password_confirmation)
-  end
-
-  def login_filter
-    unless signed_in?
-      store_location
-      flash[:error] = "You are not signed in!"
-      redirect_to signin_path
-    end
   end
 
   def owner_filter

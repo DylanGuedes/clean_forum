@@ -14,4 +14,13 @@ class ApplicationController < ActionController::Base
       render 'new'
     end
   end
+
+  private
+  def login_filter
+    unless signed_in?
+      store_location
+      flash[:error] = "You are not signed in!"
+      redirect_to signin_path
+    end
+  end
 end

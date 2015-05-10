@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'forum#index'
-  resources :users
+  resources :users, except: [:edit]
   resources :sessions, only: [:new, :create, :destroy]
   resources :posts
   resources :topics
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   delete '/admin_panel/destroy_user/' => 'admin_panel#destroy_user'
   post '/admin_panel/disapprove_report/' => 'admin_panel#disapprove_report'
   post '/admin_panel/approve_report/' => 'admin_panel#approve_report'
-  
+
   #sessions controller
   get '/signin' => 'sessions#new'
   delete '/signout' => 'sessions#destroy'
@@ -42,6 +42,8 @@ Rails.application.routes.draw do
 
   #users controller
   get '/signup' => 'users#new'
+  get '/edit_profile' => 'users#edit'
+  put '/users/update' => 'users#update'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

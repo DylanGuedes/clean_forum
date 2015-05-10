@@ -39,6 +39,21 @@ RSpec.describe UsersController, :type => :controller do
         expect(response).to have_http_status(:success)
       end
     end
+    describe '#edit' do
+      context 'signed user' do
+        it "must return success" do
+          sign_in @user
+          get :edit
+          expect(response).to have_http_status(:success)
+        end
+      end
+      context 'unsigned user' do
+        it "must be redirected" do
+          get :edit
+          expect(response).to have_http_status(:redirect)
+        end
+      end
+    end
   end
 
   describe "POST" do
@@ -58,6 +73,17 @@ RSpec.describe UsersController, :type => :controller do
         it "should not create user with invalid params" do
           post :create, :user => { :login => @user.login, :password => 'anewuserpassword', :password_confirmation => 'anewuserpassword' }
           expect(response).to render_template(:new)
+        end
+      end
+    end
+    describe '#update' do
+      context 'signed user' do
+        #subject { put :update_profile } #, :user => { :email => "hoorai@hoorai.com", :password => "123456", :password_confirmation => "123456" } }
+        it "should edit his email" do
+          sign_in @user
+          put :update, :user => { :email => "hoorai@hoorai.com", :password => "123456", :password_confirmation => "123456" }
+          subject
+          expect(@user.email).to eq("hoorai@hoorai.com")
         end
       end
     end

@@ -1,0 +1,12 @@
+<div id="container">
+  <div id="container">
+    <div class="edit_user">
+      <h1>Edit Profile</h1>
+      <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages' %>
+        <%= render 'fields', f: f %>
+        <%= f.submit "Done!", class: "button success round large" %></center>
+      <% end %>
+    </div>
+  </div>
+</div>

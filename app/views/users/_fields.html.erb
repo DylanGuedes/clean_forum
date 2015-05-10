@@ -1,7 +1,10 @@
-<%= f.label :login, "Login", class: 'signup_text' %><br>
-<%= f.text_field :login, class: 'form-control' %><br><br>
-
-
+<% if params[:action] != 'edit' %>
+  <%= f.label :login, "Login", class: 'signup_text' %><br>
+  <%= f.text_field :login, class: 'form-control' %><br><br>
+<% elsif params[:action] == 'edit' %>
+  <%= f.label :login, "Login", class: 'signup_text' %><br><br>
+  <%= "#{@current_user.login}" %><br><br>
+<% end %>
 
 <%= f.label :email, "Email", class: 'signup_text' %><br>
 <%= f.text_field :email, class: 'form-control' %><br><br>
