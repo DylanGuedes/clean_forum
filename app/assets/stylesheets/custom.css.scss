@@ -1,8 +1,26 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 body {
   //background-color: #4B7399;
-  background-color: #CFE3E0;
+  background-color: #7595C2;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
+}
+
+.navbar-nav {
+  li {
+    a {
+      font-size: 16px;
+      letter-spacing: 2px;
+      font-weight: bold;
+      &:hover {
+        color: #FF0000;
+        text-decoration: none;
+        background-color: #9A0000;
+      }
+    }
+  }
 }
 
 a img {
@@ -10,13 +28,28 @@ a img {
 }
 
 a {
-  color: #0000FF;
+  color: #FF6300;
 }
 
 .clear {
   clear: both;
   height: 0;
   overflow: hidden;
+}
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 3.0em;
+  color: #9A0000;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding-top: 15px;
+  font-weight: bold;
+  &:hover {
+    color: #FF0000;
+    text-decoration: none;
+  }
 }
 
 #container {
