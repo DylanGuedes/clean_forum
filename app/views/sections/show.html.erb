@@ -1,6 +1,7 @@
-<h2><%= link_to "Home", root_path %>  /  <%= link_to "#{@section.name}", '/sections/'+@section.id.to_s %></h2>
-<div id="container">
-  <%= render 'topics' %>
 
-<center><h2><%= link_to 'New Topic', @section.id.to_s+'/new' %></h2></center>
+
+<h2><%= link_to "Home", root_path %>  /  <%= link_to "#{@section.name}", '/sections/'+@section.id.to_s %></h2>
+<div id="secondlevel">
+    <%= render 'topics' %>
+    <center><h2><%= link_to 'New Topic', @section.id.to_s+'/new' %></h2></center>
 </div>

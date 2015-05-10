@@ -1,7 +1,10 @@
-<div class="container">
-  <%= link_to "Clean Forum", root_path, id: "logo" %>
-  <nav>
-    <ul class="nav navbar-nav navbar-right">
+<div class="row">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4">
+<nav>
+  <ul class="nav navbar-nav navbar-fixed-top navbar-center">
+    <ul class="nav navbar-nav">
       <li><%= link_to 'Home', root_path %></li>
       <li><%= link_to 'About', about_path %></li>
       <li><%= link_to 'Help', help_path %></li>
@@ -18,7 +21,11 @@
         <li><%= link_to 'Sign In', signin_path %></li>
       <% end %>
     </ul>
-  </nav>
+  </ul>
+</nav>
+</div>
+<div class="col-md-4">
+</div>
 </div>
 
 
@@ -26,10 +33,7 @@
 
 
 
-
-
-
-<div id="container">
+<!-- <div id="container">
   <h1>
     <ul>
       <%= link_to 'Home', root_path %>
@@ -49,4 +53,4 @@
       <% end %>
     </ul>
   </h1>
-</div>
+</div> -->

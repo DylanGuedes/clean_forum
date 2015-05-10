@@ -1,9 +1,19 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$color_000 : #FFFFFF;
+$color_001 : #C3CBEA;
+$color_002 : #5272C4;
+$color_003 : #383E74;
+$color_004 : #1A1B48;
+$color_005 : #000000; //black
+$color_006 : #230AA6;
+
+
+
 body {
   //background-color: #4B7399;
-  background-color: #7595C2;
+  background-color: $color_001;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
 }
@@ -11,15 +21,79 @@ body {
 .navbar-nav {
   li {
     a {
+      color: $color_000;
       font-size: 16px;
       letter-spacing: 2px;
       font-weight: bold;
       &:hover {
-        color: #FF0000;
+        color: white;
         text-decoration: none;
-        background-color: #9A0000;
+        background-color: $color_002;
       }
     }
+    background: $color_004;
+  }
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+  text-align: center;
+
+  .navbar .navbar-collapse {
+    text-align: center;
+  }
+}
+
+#firstlevel {
+  width: 75%;
+  margin: 0 auto;
+  background-color: #FFF;
+  padding: 20px 40px;
+  border: solid 1px #574B4B;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+#secondlevel {
+  h1 {
+    a {
+      color: white;
+    }
+    color: white;
+  }
+  h4 {
+    a {
+      color: white;
+    }
+  }
+  color: white;
+  width: 75%;
+  margin: 0 auto;
+  background-color: $color_004;
+  padding: 20px 40px;
+  border: solid 1px #574B4B;
+  border-radius: 5px;
+  margin-top: 20px;
+
+  containertopic {
+    h4 {
+      a {
+        color: $color_006;
+      }
+      color: $color_006;
+    }
+  }
+}
+
+#containertopic {
+  background: white;
+  h3 {
+    color: $color_003;
+  }
+  .h4 {
+    a {
+      color: $color_004;
+    }
+    color: $color_004;
   }
 }
 
@@ -28,7 +102,7 @@ a img {
 }
 
 a {
-  color: #FF6300;
+  color: $color_002;
 }
 
 .clear {
@@ -41,13 +115,13 @@ a {
   float: left;
   margin-right: 10px;
   font-size: 3.0em;
-  color: #9A0000;
+  color: $color_002;
   text-transform: uppercase;
   letter-spacing: 2px;
   padding-top: 15px;
   font-weight: bold;
   &:hover {
-    color: #FF0000;
+    color: white;
     text-decoration: none;
   }
 }
@@ -57,8 +131,13 @@ a {
   margin: 0 auto;
   background-color: #FFF;
   padding: 20px 40px;
+  color: $color_003;
   border: solid 1px black;
   margin-top: 20px;
+  .sections {
+    width: 100%;
+    background: $color_002;
+  }
 }
 
 #flash_notice, #flash_error, #flash_alert {
@@ -141,9 +220,11 @@ input#message_content {
   width: 240px;
 }
 
+.sections{
+  background: $color_003;
+}
+
 .form-control{
-  width: 35%;
-  height: 25px;
 }
 
 .signup {
