@@ -1,0 +1,41 @@
+<% counter = 0 %>
+<% @posts.each do |post| %>
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+
+    <div class="col-md-3">
+      <div id="container">
+        <center>
+          <h4>User: <%= link_to "#{post.user.login}", post.user %></h4><br>
+          <h4>Posts: <%= post.user.posts.count %></h4><br>
+          <h4>Warn Level: <%= post.user.warn %></h4>
+        </center>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div id="container">
+        <center><h5><%= post.created_at %></h5></center>
+        <h4><%= post.content.bbcode_to_html.html_safe %></h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="doing_quote" id="<%= counter %>">
+    <h3>Quote this post</h3>
+  </div>
+  <div class="target" id="target_<%= counter %>" >
+    <% quote_post = post.dup %>
+    <% quote_post.content = "[quote]"+post.content+"[/quote]" %>
+    <%= form_for quote_post do |b| %>
+      <%= b.text_area :content, text: "a"+"Teste", cols: 100, rows: 15 %>
+      <%= b.submit "Done!", class: "button success round large", name: "topic_id", value: quote_post.topic.id %>
+    <% end %>
+  </div>
+
+    <%= link_to "Report this post", '/report_posts/'+post.id.to_s %>
+
+  <br><br>
+  <% counter += 1 %>
+<% end %>

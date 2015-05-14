@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :login_filter, only: [:new, :render_report, :create, :create_report]
-  
+
   include ReportsHelper
 
   def new
@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   def create                                                                # => need factor
     @topic = Topic.find(params[:topic_id])                                  # => need factor
     pluralized_post = @topic.posts
-    #prepare_create type, type_params, pluralized_type    
+    #prepare_create type, type_params, pluralized_type
     prepare_create Post, post_params, pluralized_post
   end
 
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :topic, :user, :user_id)
+    params.require(:post).permit(:content, :topic, :user, :user_id, :topic_id)
   end
 
   def report_params

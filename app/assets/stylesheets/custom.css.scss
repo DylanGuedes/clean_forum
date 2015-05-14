@@ -16,6 +16,11 @@ body {
   background-color: $color_001;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
+  width: 99%;
+}
+
+.quote{
+  background: #ABA2A2;
 }
 
 .navbar-nav {
@@ -82,6 +87,14 @@ body {
       color: $color_006;
     }
   }
+}
+
+.target {
+  display: none;
+}
+
+.target_mainpost {
+  display: none;
 }
 
 #containertopic {
