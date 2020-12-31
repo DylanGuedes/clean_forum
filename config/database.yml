@@ -1,9 +1,10 @@
 connection: &connection
+  url: <%= ENV['DATABASE_URL'] %>  
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: dguedes
-  password: progressive
+  username: postgres
+  password: example
 
 development:
   <<: *connection
